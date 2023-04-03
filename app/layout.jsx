@@ -11,11 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body
-        className={`mx-1 md:mx-48 xl:mx-96 ${roboto.variable} font-sans bg-yellow-400`}
-      >
-        {children}
-      </body>
+      <body className={` ${roboto.variable} mx-32 my-12`}>{children}</body>
     </html>
   );
 }
+
+// probleme proiect - vercel
+// probleme cu next.config.js - Image from next.js - home page + link page
