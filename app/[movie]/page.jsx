@@ -21,10 +21,10 @@ export default async function MovieDetail({ params }) {
   return (
     <div>
       <div>
-        <h2 className="text-2xl ">{res.title}</h2>
+        <h2 className="text-2xl  font-bold ">{res.title}</h2>
         <h1 className="text-lg ">{res.release_date}</h1>
-        <h2>Runtime: {res.runtime} minutes</h2>
-        <h2 className="text-sm bg-green-600 inline-block my-2 py-2 px-4 rounde">
+        <h2 className="text-lg">Runtime: {res.runtime} minutes</h2>
+        <h2 className="text-sm bg-green-600 inline-block my-2 py-2 px-4 rounde text-lg">
           {res.status}
         </h2>
         <Image
@@ -35,7 +35,7 @@ export default async function MovieDetail({ params }) {
           alt={res.title}
           priority
         />
-        <p>{res.overview}</p>
+        <p className="text-lg">{res.overview}</p>
       </div>
     </div>
   );

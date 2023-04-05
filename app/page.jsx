@@ -7,7 +7,8 @@ export default async function Home() {
   const res = await data.json();
   return (
     <main>
-      <div className="grid grid-cols-fluid gap-16">
+      <h1 className="text-4xl font-bold text-center mb-10">LATEST MOVIES</h1>
+      <div className="grid grid-cols-fluid gap-14 align-items:center 	justify-content: flex-start; ">
         {res.results.map((movie) => (
           <Movie
             key={movie.id}
