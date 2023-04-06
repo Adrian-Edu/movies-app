@@ -1,4 +1,5 @@
 import Movie from "./Movie";
+import Navbar from "./navbar/page.jsx";
 
 export default async function Home() {
   const data = await fetch(
@@ -7,6 +8,7 @@ export default async function Home() {
   const res = await data.json();
   return (
     <main>
+      <Navbar />
       <h1 className="text-4xl font-bold text-center mb-10">LATEST MOVIES</h1>
       <div className="grid grid-cols-fluid gap-14 align-items:center 	justify-content: flex-start; ">
         {res.results.map((movie) => (
