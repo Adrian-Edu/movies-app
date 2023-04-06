@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <div className="navbar bg-warning mb-12">
+    <div className="navbar bg-black mb-12 text-yellow-400 py-5 sticky top-0 ...">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -21,7 +21,7 @@ export default function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 "
           >
             <li>
               <a>Homepage</a>
@@ -36,7 +36,9 @@ export default function Navbar() {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-xl">LM</a>
+        <a className="btn btn-ghost normal-case text-xl">
+          <h1 className="text-2xl font-bold text-center ">LATEST MOVIES</h1>
+        </a>
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">

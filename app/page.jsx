@@ -9,8 +9,8 @@ export default async function Home() {
   return (
     <main>
       <Navbar />
-      <h1 className="text-4xl font-bold text-center mb-10">LATEST MOVIES</h1>
-      <div className="grid grid-cols-fluid gap-14 align-items:center 	justify-content: flex-start; ">
+
+      <div className="grid grid-cols-fluid gap-14 align-items:center justify-content: flex-start  md:ms-6 ">
         {res.results.map((movie) => (
           <Movie
             key={movie.id}
