@@ -19,9 +19,9 @@ export default async function MovieDetail({ params }) {
 
   const res = await data.json();
   return (
-    <div>
-      <div className="text-lg">
-        <h2 className="text-2xl  font-bold ">{res.title}</h2>
+    <div className="pl-6 ... pt-6 ... h-screen">
+      <div className="text-2xl">
+        <h2 className="text-4xl  font-bold ">{res.title}</h2>
         <h1>{res.release_date}</h1>
         <h2>Runtime: {res.runtime} minutes</h2>
         <h2 className="bg-green-600 inline-block my-2 py-2 px-4">
