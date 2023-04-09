@@ -1,6 +1,6 @@
 import Movie from "./Movie";
 import Navbar from "./navbar/page.jsx";
-import Footer from "../footer/page.jsx";
+import Footer from "./footer/page.jsx";
 
 export default async function Home() {
   const data = await fetch(
@@ -10,8 +10,7 @@ export default async function Home() {
   return (
     <main>
       <Navbar />
-
-      <div className="grid grid-cols-fluid gap-14 align-items:center justify-content: flex-start  md:ms-6 mb-8 ... ">
+      <div className="grid grid-cols-fluid gap-8 xl:gap-14 align-items:center justify-content:flex-start adapt-screen">
         {res.results.map((movie) => (
           <Movie
             key={movie.id}
