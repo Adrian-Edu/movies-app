@@ -2,26 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (min-width: 320px) {
-  .adapt-screen {
-    margin-left: 10px;
-  }
-}
+/*
 
-@media (min-width: 375px) {
-  .adapt-screen {
-    margin-left: 38px;
-  }
-}
 
-@media (min-width: 425px) {
-  .adapt-screen {
-    margin-left: 60px;
-  }
-}
 
 @media (min-width: 768px) {
   .adapt-screen {
     margin-left: 50px;
   }
 }
+*/

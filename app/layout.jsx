@@ -11,9 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body
-        className={` ${roboto.variable}  max-md:flex justify-center ...  md: pb-12 bg-cyan-300  `}
-      >
+      <body className={` ${roboto.variable}  md: pb-12 bg-cyan-300  `}>
         {children}
       </body>
     </html>

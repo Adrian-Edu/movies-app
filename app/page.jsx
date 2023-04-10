@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <main>
       <Navbar />
-      <div className="grid grid-cols-fluid gap-8 xl:gap-14 align-items:center justify-content:flex-start adapt-screen">
+      <div className="grid grid-cols-fluid gap-8 xl:gap-14 align-items:center justify-content:flex-start s:ml-2.5 m:ml-10 l:ml-16 md:ml-12 lg:ml-4 xl:ml-3 2xl:ml-8 3xl:ml-2">
         {res.results.map((movie) => (
           <Movie
             key={movie.id}

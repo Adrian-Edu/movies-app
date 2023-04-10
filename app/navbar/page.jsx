@@ -2,8 +2,8 @@ export default function Navbar() {
   return (
     <div className="flex flex-row bg-black mb-10 py-5 sticky top-0 ...">
       <div className="w-1/5">
-        <a className="btn px-0 md:pl-3 btn-ghost normal-case text-xl">
-          <h1 className="text-xs leading-6 md:text-lg  2xl:text-2xl  font-bold text-center  text-yellow-400  ">
+        <a className="btn px-0 md:pl-3 md:ml-0 btn-ghost normal-case text-xl">
+          <h1 className="text-xs s:mx-2 leading-6 md:text-lg md:mx-0 2xl:text-2xl  font-bold text-center  text-yellow-400  ">
             LATEST MOVIES
           </h1>
         </a>
@@ -13,7 +13,7 @@ export default function Navbar() {
           <div className="input-group ">
             <input
               type="text"
-              className="pr-0 md:pr-80 md:text-2xl pl-2 md:pl-4 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+              className="md:pr-70 md:ml-0 md:text-2xl pl-2 md:pl-4 lg:pr-80 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
               placeholder="Search movie ...."
             />
             <button className="btn px-0 h-6 w-12 md:btn-square">
@@ -35,8 +35,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="w-1/5 flex justify-end mr-4 ">
-        <button className="btn px-1 btn-warning text-xs md:text-lg md:px-8">
+      <div className="w-1/5 flex justify-end mr-2 ">
+        <button className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2 md:text-lg md:px-3 md:ml-20 md:mr-9 lg:mx-2">
           Sing In
         </button>
       </div>
