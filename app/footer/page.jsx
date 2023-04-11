@@ -2,9 +2,9 @@ export default function Footer() {
   return (
     <section className="text-center text-lg  md:text-3xl  bg-black text-yellow-400 py-10 relative bottom-[-50px] ">
       <div className="grid leading-10">
+        <a className="link link-hover">Home Page</a>
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
       </div>
       <div>
         <p className="leading-10">
