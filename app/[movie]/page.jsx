@@ -23,7 +23,11 @@ export default async function MovieDetail({ params }) {
   return (
     <section>
       <Navbar />
-      <div className="s:px-2 pl-6 pt-6 h-full md:h-screen">
+      <a href="https://movies-app-theta-smoky.vercel.app/">
+        <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go back</button>
+      </a>
+
+      <div className="s:px-2 pl-6 px-6 h-full ">
         <div className="text-2xl">
           <h2 className="text-4xl  font-bold ">{res.title}</h2>
           <h1>{res.release_date}</h1>
