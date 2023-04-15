@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "../navbar/page";
 import Footer from "../footer/page";
+import Link from "next/link";
 
 export async function generatStaticParams() {
   const data = await fetch(
@@ -23,10 +24,9 @@ export default async function MovieDetail({ params }) {
   return (
     <section>
       <Navbar />
-      <a href="https://movies-app-theta-smoky.vercel.app/">
+      <Link href="/">
         <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go back</button>
-      </a>
-
+      </Link>
       <div className="s:px-2 pl-6 px-6 h-full ">
         <div className="text-2xl">
           <h2 className="text-4xl  font-bold ">{res.title}</h2>
