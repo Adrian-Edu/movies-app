@@ -1,4 +1,15 @@
+"use client";
+
+import React, { useState } from "react";
+
 export default function Navbar() {
+  const [data, setData] = useState("");
+
+  const searchInput = (e) => {
+    e.preventDefault();
+    setData(e.target.value);
+  };
+
   return (
     <div className="flex flex-row bg-black mb-10 py-5 sticky top-0 ...">
       <div className="w-1/5">
@@ -12,6 +23,7 @@ export default function Navbar() {
         <div className="form-control ">
           <div className="input-group ">
             <input
+              onChange={searchInput}
               type="text"
               className="md:pr-70 md:ml-0 md:text-2xl pl-2 md:pl-4 lg:pr-80 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
               placeholder="Search movie ...."
