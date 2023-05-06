@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 
-export default function Navbar() {
-  const [data, setData] = useState("");
+export default function Navbar(props) {
+  const [inputData, setInputData] = useState("");
 
   const searchInput = (e) => {
     e.preventDefault();
-    setData(e.target.value);
+    setInputData(e.target.value);
   };
 
   return (
