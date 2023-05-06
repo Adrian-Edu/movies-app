@@ -47,7 +47,6 @@ export default function Home() {
             />
           ))}
       </div>
-      <h3>{dataFromChild}</h3>
       <Footer />
     </main>
   );
