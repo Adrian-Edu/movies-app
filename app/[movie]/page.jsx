@@ -36,7 +36,7 @@ export default async function MovieDetail({ params }) {
             {res.status}
           </h2>
           <Image
-            className="my-8 mx-0"
+            className="my-6 mx-0"
             src={imagePath + res.backdrop_path}
             width={500}
             height={500}

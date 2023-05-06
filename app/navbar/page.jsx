@@ -9,7 +9,7 @@ export default function Navbar(props) {
   };
 
   return (
-    <div className="flex flex-row bg-black mb-10 py-5 sticky top-0 ...">
+    <div className="flex flex-row bg-black mb-6 py-5 sticky top-0 ...">
       <div className="w-1/5">
         <a className="btn px-0 md:pl-3 md:ml-0 btn-ghost normal-case text-xl">
           <h1 className="text-xs s:mx-2 leading-6 md:text-lg md:mx-0 2xl:text-2xl  font-bold text-center  text-yellow-400  ">
