@@ -3,11 +3,9 @@
 import React, { useState } from "react";
 
 export default function Navbar(props) {
-  const [inputData, setInputData] = useState("");
-
   const searchInput = (e) => {
     e.preventDefault();
-    setInputData(e.target.value);
+    props.receive(e.target.value);
   };
 
   return (
