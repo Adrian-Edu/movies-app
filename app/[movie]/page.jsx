@@ -28,8 +28,8 @@ export default async function MovieDetail({ params }) {
         <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go back</button>
       </Link>
       <div className="s:px-2 pl-6 px-6 h-full ">
-        <div className="text-2xl">
-          <h2 className="text-4xl  font-bold ">{res.title}</h2>
+        <div className="text-xl">
+          <h2 className="text-2xl  font-bold ">{res.title}</h2>
           <h1>{res.release_date}</h1>
           <h2>Runtime: {res.runtime} minutes</h2>
           <h2 className="bg-green-600 inline-block my-2 py-2 px-4">
@@ -38,8 +38,8 @@ export default async function MovieDetail({ params }) {
           <Image
             className="my-8 mx-0"
             src={imagePath + res.backdrop_path}
-            width={1000}
-            height={1000}
+            width={700}
+            height={700}
             alt={res.title}
             priority
           />
