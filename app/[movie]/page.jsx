@@ -38,8 +38,8 @@ export default async function MovieDetail({ params }) {
           <Image
             className="my-8 mx-0"
             src={imagePath + res.backdrop_path}
-            width={700}
-            height={700}
+            width={500}
+            height={500}
             alt={res.title}
             priority
           />
