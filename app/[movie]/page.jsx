@@ -25,7 +25,7 @@ export default async function MovieDetail({ params }) {
     <section>
       <Navbar />
       <Link href="/">
-        <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go back</button>
+        <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go home</button>
       </Link>
       <div className="s:px-2 pl-6 px-6 h-full ">
         <div className="text-xl">
