@@ -8,7 +8,7 @@ export default function Footer() {
       </div>
       <div>
         <p className="leading-10">
-          Copyright © 2023 - All right reserved by LATEST MOVIES
+          Copyright © 2023 - All right reserved by <br /> LATEST MOVIES
         </p>
       </div>
     </section>
