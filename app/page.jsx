@@ -1,9 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Movie from "./Movie";
 import Navbar from "./navbar/page.jsx";
 import Footer from "./footer/page.jsx";
-import React, { useState, useEffect } from "react";
 
 export default function Home() {
   const [movieData, setMovieData] = useState([]);
@@ -31,6 +31,10 @@ export default function Home() {
       .replace(/\s+/g, "")
       .includes(dataFromChild.toLowerCase().replace(/\s+/g, ""))
   );
+
+  if (movieData.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <main>
