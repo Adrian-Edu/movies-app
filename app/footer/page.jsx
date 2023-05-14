@@ -1,10 +1,18 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <section className="text-center text-lg  md:text-3xl  bg-black text-yellow-400 py-5 relative bottom-[-50px] ">
       <div className="grid leading-10">
-        <a className="link link-hover">Home Page</a>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
+        <Link className="link link-hover" href="/">
+          Home Page
+        </Link>
+        <Link className="link link-hover" href="/aboutus">
+          About us
+        </Link>
+        <Link className="link link-hover" href="/contact">
+          Contact
+        </Link>
       </div>
       <div>
         <p className="leading-10">

@@ -33,7 +33,24 @@ export default function Home() {
   );
 
   if (movieData.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center ">
+        <div class="lds-spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
   }
 
   return (

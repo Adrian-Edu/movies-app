@@ -3,7 +3,7 @@ import Navbar from "../navbar/page";
 import Footer from "../footer/page";
 import Link from "next/link";
 
-export async function generatStaticParams() {
+export async function generateStaticParams() {
   const data = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
   );
