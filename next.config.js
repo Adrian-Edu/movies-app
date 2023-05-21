@@ -1,9 +1,9 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   images: {
+    domains: ["image.tmdb.org"],
     remotePatterns: [
       {
         protocol: "https",
@@ -12,6 +12,9 @@ const nextConfig = {
         pathname: "/t/p/original/**",
       },
     ],
+  },
+  env: {
+    customKey: "6e4710cc48cf4a172ec811cb0202c758",
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

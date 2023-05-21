@@ -1,11 +1,10 @@
 import Image from "next/image";
-import Navbar from "../navbar/page";
-import Footer from "../footer/page";
 import Link from "next/link";
 
 export async function generateStaticParams() {
   const data = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.customKey}`,
+    { next: { revalidate: 10 } }
   );
   const res = await data.json();
   return res.results.map((movie) => ({
@@ -17,13 +16,12 @@ export default async function MovieDetail({ params }) {
   const { movie } = params;
   const imagePath = "https://image.tmdb.org/t/p/original";
   const data = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.customKey}`
   );
 
   const res = await data.json();
   return (
     <section>
-      <Navbar />
       <Link href="/">
         <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go home</button>
       </Link>
@@ -46,7 +44,6 @@ export default async function MovieDetail({ params }) {
           <p>{res.overview}</p>
         </div>
       </div>
-      <Footer />
     </section>
   );
 }

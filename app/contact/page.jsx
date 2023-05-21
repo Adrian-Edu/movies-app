@@ -1,13 +1,9 @@
-import Navbar from "../navbar/page";
-import Footer from "../footer/page";
-
 export default function About() {
   return (
     <>
-      <Navbar />
       <h1 className="text-6xl flex justify-center font-bold mt-10">Contact</h1>
-      <div className="h-5/6 flex justify-center text-4xl mt-10">
-        <div className="max-w-screen-2xl text-justify mb-10">
+      <div className="h-4/6 flex justify-center text-4xl mt-10">
+        <div className="max-w-screen-2xl mb-10 mx-10 text-2xl text-center md:mx-20 md:text-4xl md:text-justify ">
           <p>
             Welcome to our contact page! We're thrilled to hear from you and we
             appreciate your interest in our company. Whether you have a question
@@ -26,7 +22,6 @@ export default function About() {
           </p>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

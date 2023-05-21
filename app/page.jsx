@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import Movie from "./Movie";
 import Navbar from "./navbar/page.jsx";
-import Footer from "./footer/page.jsx";
 
-export default function Home() {
+export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
 
   useEffect(() => {
@@ -19,11 +18,11 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const [dataFromChild, setDataFromChild] = useState("");
+
   const receiveData = (data) => {
     setDataFromChild(data);
   };
-
-  const [dataFromChild, setDataFromChild] = useState("");
 
   const filteredMovieData = movieData.filter((movie) =>
     movie.title
@@ -35,7 +34,7 @@ export default function Home() {
   if (movieData.length === 0) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <div class="lds-spinner">
+        <div className="lds-spinner">
           <div></div>
           <div></div>
           <div></div>
@@ -68,7 +67,6 @@ export default function Home() {
             />
           ))}
       </div>
-      <Footer />
     </main>
   );
 }
