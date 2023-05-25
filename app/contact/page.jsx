@@ -1,8 +1,13 @@
+import Link from "next/link";
+
 export default function About() {
   return (
     <>
-      <h1 className="text-6xl flex justify-center font-bold mt-10">Contact</h1>
-      <div className="h-4/6 flex justify-center text-4xl mt-10">
+      <Link href="/">
+        <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go home</button>
+      </Link>
+      <h1 className="text-6xl flex justify-center font-bold mb-6">Contact</h1>
+      <div className="h-4/6 flex justify-center text-4xl ">
         <div className="max-w-screen-2xl mb-10 mx-10 text-2xl text-center md:mx-20 md:text-4xl md:text-justify ">
           <p>
             Welcome to our contact page! We're thrilled to hear from you and we

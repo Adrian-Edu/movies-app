@@ -55,7 +55,7 @@ export default function Home(props) {
   return (
     <main>
       <Navbar receive={receiveData} />
-      <div className="grid grid-cols-fluid gap-8 xl:gap-14 align-items:center justify-content:flex-start s:ml-2.5 m:ml-10 l:ml-16 md:ml-12 lg:ml-4 xl:ml-3 2xl:ml-8 3xl:ml-2">
+      <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5">
         {Array.isArray(movieData) &&
           filteredMovieData.map((movie) => (
             <Movie
