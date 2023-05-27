@@ -1,22 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Movie from "./Movie";
 import Navbar from "./navbar/page.jsx";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=6e4710cc48cf4a172ec811cb0202c758`
-      );
-      const res = await data.json();
-      setMovieData(res.results);
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=6e4710cc48cf4a172ec811cb0202c758`
+    );
+    const res = await data.json();
+    setMovieData(res.results);
+  };
+  fetchData();
 
   const [dataFromChild, setDataFromChild] = useState("");
 

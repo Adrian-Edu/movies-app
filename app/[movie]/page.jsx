@@ -21,7 +21,7 @@ export default async function MovieDetail({ params }) {
 
   const res = await data.json();
   return (
-    <section>
+    <>
       <Link href="/">
         <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go home</button>
       </Link>
@@ -44,6 +44,6 @@ export default async function MovieDetail({ params }) {
           <p>{res.overview}</p>
         </div>
       </div>
-    </section>
+    </>
   );
 }
