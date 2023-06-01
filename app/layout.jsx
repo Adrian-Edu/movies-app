@@ -19,8 +19,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-/*
-1. Modific modul in care aduc datele conform metodologiei
-2. Inteleg cum pot trimite datele prin fetche datele
-*/
