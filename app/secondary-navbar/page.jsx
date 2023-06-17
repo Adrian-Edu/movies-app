@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Navbar(props) {
   return (
-    <div className="flex flex-row bg-black mb-6 py-5 sticky top-0 ...">
+    <nav className="flex flex-row bg-black mb-6 py-5 sticky top-0 ...">
       <div className="w-1/5">
         <Link
           href="/"
@@ -15,10 +17,14 @@ export default function Navbar(props) {
       </div>
       <div className=" flex justify-center w-3/5   "></div>
       <div className="w-1/5 flex justify-end mr-2 ">
-        <button className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2 md:text-lg md:px-3 md:ml-20 md:mr-9 lg:mx-2">
+        <button
+          type="button"
+          className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2 md:text-lg md:px-3 md:ml-20 md:mr-9 lg:mx-2"
+          onClick={props.login}
+        >
           Sing In
         </button>
       </div>
-    </div>
+    </nav>
   );
 }

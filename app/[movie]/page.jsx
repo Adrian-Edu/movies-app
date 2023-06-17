@@ -3,7 +3,6 @@ import Link from "next/link";
 import ErrorPage from "../error/page";
 
 export async function generateStaticParams() {
-
   const data = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.customKey}`
   );

@@ -1,15 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import Movie from "./Movie";
 import Navbar from "./navbar/page.jsx";
+import SecondNavbar from "./secondary-navbar/page";
+import { useState, useEffect } from "react";
+import { singIn, singOut, useSession, getProviders } from "next-auth/react";
+import Image from "next/image";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
+  const [isUserLoggedIn, setIsUserLogin] = useState(true);
+
+  const logInOut = () => {
+    setIsUserLogin((prevState) => setIsUserLogin(!prevState));
+  };
 
   const fetchData = async () => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=6e4710cc48cf4a172ec811cb0202c758`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.customKey}`
     );
     const res = await data.json();
     setMovieData(res.results);
@@ -51,20 +59,38 @@ export default function Home(props) {
   }
 
   return (
-    <main>
-      <Navbar receive={receiveData} />
-      <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5">
-        {Array.isArray(movieData) &&
-          filteredMovieData.map((movie) => (
-            <Movie
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              poster_path={movie.poster_path}
-              release_date={movie.release_date}
-            />
-          ))}
-      </div>
-    </main>
+    <section>
+      {isUserLoggedIn ? (
+        <>
+          <Navbar receive={receiveData} logout={logInOut} />
+          <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5">
+            {Array.isArray(movieData) &&
+              filteredMovieData.map((movie) => (
+                <Movie
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.title}
+                  poster_path={movie.poster_path}
+                  release_date={movie.release_date}
+                />
+              ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <SecondNavbar login={logInOut} />
+          <div className="flex justify-center items-center"></div>
+          <Image
+            style={{
+              width: "2700px",
+            }}
+            src="/lastest-movies.jpg"
+            width={1500}
+            height={1500}
+            alt="Latest movies"
+          />
+        </>
+      )}
+    </section>
   );
 }

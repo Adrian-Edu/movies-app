@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Movie({ title, release_date, poster_path, id }) {
   const imagePath = "https://image.tmdb.org/t/p/original";
   return (
-    <div>
+    <section>
       <h2 className="font-bold truncate ... sm:text-2xl ">{title}</h2>
       <h3 className="mb-2 md:text-xl">{release_date}</h3>
       <Link href={`/${id}`}>
@@ -16,6 +16,6 @@ export default function Movie({ title, release_date, poster_path, id }) {
           priority
         />
       </Link>
-    </div>
+    </section>
   );
 }

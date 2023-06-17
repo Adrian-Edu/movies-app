@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./styles/globals.css";
 import { Roboto } from "next/font/google";
 import Footer from "./footer/page.jsx";
 
@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className={` ${roboto.variable}  md: pb-12 bg-cyan-300`}>
-        {children}
+        <main> {children}</main>
         <Footer />
       </body>
     </html>

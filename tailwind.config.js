@@ -4,8 +4,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -15,6 +13,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         fluid: "repeat(auto-fit, minmax(18rem, 1fr))",
+      },
+      minHeight: {
+        "1/2": "50%",
       },
     },
     screens: {
