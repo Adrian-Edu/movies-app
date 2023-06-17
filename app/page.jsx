@@ -4,7 +4,7 @@ import Movie from "./Movie";
 import Navbar from "./navbar/page.jsx";
 import SecondNavbar from "./secondary-navbar/page";
 import { useState, useEffect } from "react";
-import { singIn, singOut, useSession, getProviders } from "next-auth/react";
+import { singIn, singOut, useSession, getProviders } from "next-auth";
 import Image from "next/image";
 
 export default function Home(props) {
