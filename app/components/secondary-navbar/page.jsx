@@ -15,7 +15,7 @@ export default function Navbar(props) {
           </h1>
         </Link>
       </div>
-      <div className=" flex justify-center w-3/5   "></div>
+      <div className=" flex justify-center w-3/5 "></div>
       <div className="w-1/5 flex justify-end mr-2 ">
         <button
           type="button"

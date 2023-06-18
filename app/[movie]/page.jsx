@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ErrorPage from "../error/page";
+import ErrorPage from "../components/error/page";
 
 export async function generateStaticParams() {
   const data = await fetch(

@@ -7,10 +7,10 @@ export default function Footer() {
         <Link className="link link-hover" href="/">
           Home Page
         </Link>
-        <Link className="link link-hover" href="/aboutus">
+        <Link className="link link-hover" href="/components/aboutus">
           About us
         </Link>
-        <Link className="link link-hover" href="/contact">
+        <Link className="link link-hover" href="/components/contact">
           Contact
         </Link>
       </div>

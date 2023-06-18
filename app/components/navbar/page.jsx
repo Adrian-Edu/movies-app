@@ -10,10 +10,6 @@ export default function Navbar(props) {
     props.receive(e.target.value);
   };
 
-  const singOut = () => {};
-
-  const [toogleDropdown, setToogleDropdown] = useState(false);
-
   return (
     <nav className="flex flex-row bg-black mb-6 py-5 sticky top-0">
       <div className="w-1/5">
@@ -62,20 +58,7 @@ export default function Navbar(props) {
         >
           Log Out
         </button>
-        <Image
-          className=" hidden md:block rounded-3xl"
-          src="/logo-alb.jpg"
-          width={45}
-          height={45}
-        />
       </div>
-      {toogleDropdown && (
-        <div className="dropdown text-white">
-          <Link href="/" className="dropdown_link">
-            My profile
-          </Link>
-        </div>
-      )}
     </nav>
   );
 }
