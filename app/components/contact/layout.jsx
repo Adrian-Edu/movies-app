@@ -1,4 +1,4 @@
-import Navbar from "../secondary-navbar/page";
+import Navbar from "../../components/navbar-secondary/page";
 
 export default function ContactLayout({ children }) {
   return (

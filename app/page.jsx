@@ -2,13 +2,13 @@
 
 import Movie from "./components/movie/Movie";
 import Navbar from "./components/navbar/page.jsx";
-import SecondNavbar from "./components/secondary-navbar/page";
+import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
 import Image from "next/image";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedIn, setIsUserLogin] = useState(true);
+  const [isUserLoggedIn, setIsUserLogin] = useState(false);
 
   const logInOut = () => {
     setIsUserLogin((prevState) => setIsUserLogin(!prevState));

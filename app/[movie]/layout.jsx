@@ -1,4 +1,4 @@
-import Navbar from "../components/secondary-navbar/page";
+import Navbar from "../components/navbar-secondary/page";
 
 export default function MovieLayout({ children }) {
   return (
