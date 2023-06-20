@@ -15,15 +15,13 @@ export default function Navbar(props) {
       </div>
       <div className=" flex justify-center w-3/5 "></div>
       <div className="w-1/5 flex justify-end mr-2 ">
-        <Link href="/components/login">
-          <button
-            type="button"
-            className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2 md:text-lg md:px-3 md:ml-20 md:mr-9 lg:mx-2"
-            // onClick={props.login}
-          >
-            Sing In
-          </button>
-        </Link>
+        <button
+          type="button"
+          className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2 md:text-lg md:px-3 md:ml-20 md:mr-9 lg:mx-2"
+          onClick={props.login}
+        >
+          Sing In
+        </button>
       </div>
     </nav>
   );
