@@ -4,16 +4,15 @@ import Modal from "../modal/page";
 import { useState, useEffect } from "react";
 
 export default function page() {
-  const [userExists, setUserExists] = useState(false);
   const [isValid, setValid] = useState(false);
-  const [forwordValidation, setForwordValidation] = useState(false);
+  const [emailValidation, setEmailValidation] = useState(false);
+  const [passowrdValidation, setPasswordValidation] = useState(false);
   const [sender, setSender] = useState({
     email: "",
     password: "",
   });
 
   const [editState, setEditState] = useState(null);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => {
@@ -28,20 +27,39 @@ export default function page() {
     setSender({ ...sender, email: e.target.value });
   };
 
+  const handlePasswordInput = (e) => {
+    setSender({ ...sender, password: e.target.value });
+  };
+
   const onForword = (e) => {
-    if (sender.email !== "" && sender.email.length > 12) {
+    if (sender.email === "") {
+      setEmailValidation(true);
+    } else if (sender.email.length < 15) {
+      setEmailValidation(true);
+    } else {
+      setEmailValidation(false);
       setValid(true);
-      setUserExists(true);
     }
-    setForwordValidation(true);
+
+    if (isValid && sender.password === "") {
+      setPasswordValidation(true);
+    } else {
+      setPasswordValidation(false);
+    }
+
     e.preventDefault();
   };
 
   useEffect(() => {
-    if (isOpen === false) {
-      setEditState(null);
+    if (isOpen === false || sender.email === "") {
+      if (isOpen === false) {
+        setEditState(null);
+      }
+      if (sender.email === "") {
+        setValid(false);
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, sender.email]);
 
   return (
     <>
@@ -60,23 +78,35 @@ export default function page() {
               id="email"
               name="user_email"
               placeholder="Please insert your email"
+              required
             ></input>
-            {forwordValidation && sender.email.length <= 12 ? (
+            {emailValidation && sender.email.length < 15 ? (
               <div>
                 <span style={{ color: `red` }}>
-                  Email must have at least 12 characters!
+                  Email must have at least 15 characters!
                 </span>
               </div>
             ) : null}
 
-            {userExists && isValid ? (
-              <input
-                className="py-2 mt-3 md:pr-36 pl-3 mb-3  rounded-lg border-2  border-stone-700 font-bold "
-                type="password"
-                id="passowrd"
-                name="user_passowrd"
-                placeholder="Please insert your password"
-              ></input>
+            {isValid ? (
+              <>
+                <input
+                  onChange={handlePasswordInput}
+                  className="py-2 mt-3 md:pr-36 pl-3 mb-3  rounded-lg border-2  border-stone-700 font-bold "
+                  type="password"
+                  id="passowrd"
+                  name="user_passowrd"
+                  placeholder="Please insert your password"
+                  required
+                ></input>
+                {passowrdValidation && sender.password.length < 10 ? (
+                  <div>
+                    <span style={{ color: `red` }}>
+                      The password must have at least 10 characters!
+                    </span>
+                  </div>
+                ) : null}
+              </>
             ) : null}
           </form>
           <button
