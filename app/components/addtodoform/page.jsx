@@ -4,7 +4,7 @@ import Button from "./button/page";
 import Card from "./card/page";
 import { useEffect } from "react";
 
-const AddForm = (props) => {
+const CreateUser = (props) => {
   const [userData, setUserData] = useState({
     name: "",
     surName: "",
@@ -167,10 +167,38 @@ const AddForm = (props) => {
   );
 };
 
-export default AddForm;
+export default CreateUser;
 
 /*
 
- 
+ useEffect(() => {
+  const { name, surName, email, password } = userData;
+
+  const nameErrorMessage =
+    name.trim().length <= 2 ? "The name should have at least 3 characters!" : "";
+  const surNameErrorMessage =
+    surName.trim().length <= 2
+      ? "The surname should have at least 3 characters!"
+      : "";
+  const emailErrorMessage =
+    email.trim().length <= 11 ? "Email should have at least 12 characters!" : "";
+  const passwordErrorMessage =
+    password.trim().length <= 9
+      ? "The password should have at least 10 numbers!"
+      : "";
+
+  setErrorMessage((prevState) => ({
+    ...prevState,
+    saveName: nameErrorMessage,
+    Surname: surNameErrorMessage,
+    email: emailErrorMessage,
+    password: passwordErrorMessage,
+    isValid:
+      nameErrorMessage ||
+      surNameErrorMessage ||
+      emailErrorMessage ||
+      passwordErrorMessage,
+  }));
+}, [userData.name, userData.surName, userData.email, userData.password]);
 
   */

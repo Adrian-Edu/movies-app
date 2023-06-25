@@ -13,11 +13,9 @@ export default function Footer() {
         <Link className="link link-hover" href="/components/contact">
           Contact
         </Link>
-      </div>
-      <div>
-        <p className="leading-10">
+        <h1 className="leading-10" href="/">
           Copyright © 2023 - All right reserved by <br /> LATEST MOVIES
-        </p>
+        </h1>
       </div>
     </section>
   );

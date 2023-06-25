@@ -2,18 +2,18 @@
 import AddForm from "../addtodoform/page";
 import Modal from "../modal/page";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
-export default function page() {
+export default function Input() {
   const [isValid, setValid] = useState(false);
   const [emailValidation, setEmailValidation] = useState(false);
   const [passowrdValidation, setPasswordValidation] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [customer, setCustomer] = useState(null);
   const [sender, setSender] = useState({
     email: "",
     password: "",
   });
-
-  const [editState, setEditState] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -53,7 +53,7 @@ export default function page() {
   useEffect(() => {
     if (isOpen === false || sender.email === "") {
       if (isOpen === false) {
-        setEditState(null);
+        setCustomer(null);
       }
       if (sender.email === "") {
         setValid(false);
@@ -109,12 +109,23 @@ export default function page() {
               </>
             ) : null}
           </form>
-          <button
-            onClick={onForword}
-            className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold"
-          >
-            Forward
-          </button>
+
+          {isValid && sender.password.length > 10 ? (
+            <>
+              <button className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold">
+                Log in
+              </button>
+              s
+            </>
+          ) : (
+            <button
+              onClick={onForword}
+              className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold"
+            >
+              Forward
+            </button>
+          )}
+
           <p className="text-xl  mt-3 mb-3 ">You don't have an account?</p>
           <button
             onClick={openModal}
@@ -127,7 +138,7 @@ export default function page() {
           </p>
         </div>
         <Modal isOpen={isOpen} onClose={closeModal}>
-          {!editState ? <AddForm onCreateClick={openModal} /> : null}
+          {!customer ? <AddForm onCreateClick={openModal} /> : null}
         </Modal>
       </section>
     </>
