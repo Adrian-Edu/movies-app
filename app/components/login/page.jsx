@@ -2,7 +2,6 @@
 import AddForm from "../addtodoform/page";
 import Modal from "../modal/page";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 export default function Input() {
   const [isValid, setValid] = useState(false);
@@ -42,6 +41,8 @@ export default function Input() {
     }
 
     if (isValid && sender.password === "") {
+      setPasswordValidation(true);
+    } else if (isValid && sender.password < 10) {
       setPasswordValidation(true);
     } else {
       setPasswordValidation(false);
@@ -115,7 +116,6 @@ export default function Input() {
               <button className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold">
                 Log in
               </button>
-              s
             </>
           ) : (
             <button
