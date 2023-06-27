@@ -120,3 +120,99 @@ p {
 .textarea {
   resize: none;
 }
+
+.page-height-notfount {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.author {
+  color: none;
+  text-decoration: none;
+}
+
+.error-p-first {
+  font-size: 30px;
+  font-weight: 700;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.error-p {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.error404pic {
+  width: 700px;
+  height: 700px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 2000px) {
+  .error-p {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .error404pic {
+    width: 550px;
+    height: 550px;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .error-p {
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+  .error404pic {
+    width: 470px;
+    height: 470px;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .error-p {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .error404pic {
+    width: 450px;
+    height: 450px;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .error-p {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .error404pic {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .error-p {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .error404pic {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+  }
+  .page-height-notfount {
+    height: 90vh;
+  }
+}

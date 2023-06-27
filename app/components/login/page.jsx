@@ -2,12 +2,17 @@
 import AddForm from "../addtodoform/page";
 import Modal from "../modal/page";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Input() {
-  const [isValid, setValid] = useState(false);
-  const [emailValidation, setEmailValidation] = useState(false);
   const [passowrdValidation, setPasswordValidation] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+
+  const [formState, setFormState] = useState({
+    isValid: false,
+    emailValidation: false,
+    isModalOpen: false,
+  });
+
   const [customer, setCustomer] = useState(null);
   const [sender, setSender] = useState({
     email: "",
@@ -15,11 +20,11 @@ export default function Input() {
   });
 
   const closeModal = () => {
-    setIsOpen(false);
+    setFormState({ ...formState, isModalOpen: false });
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    setFormState({ ...formState, isModalOpen: true });
   };
 
   const handleEmailInput = (e) => {
@@ -30,19 +35,19 @@ export default function Input() {
     setSender({ ...sender, password: e.target.value });
   };
 
-  const onForword = (e) => {
+  const onForward = (e) => {
     if (sender.email === "") {
-      setEmailValidation(true);
+      setFormState({ ...formState, emailValidation: true });
     } else if (sender.email.length < 15) {
-      setEmailValidation(true);
+      setFormState({ ...formState, emailValidation: true });
     } else {
-      setEmailValidation(false);
-      setValid(true);
+      setFormState({ ...formState, emailValidation: false });
+      setFormState({ ...formState, isValid: true });
     }
 
-    if (isValid && sender.password === "") {
+    if (formState.isValid && sender.password === "") {
       setPasswordValidation(true);
-    } else if (isValid && sender.password < 10) {
+    } else if (formState.isValid && sender.password < 10) {
       setPasswordValidation(true);
     } else {
       setPasswordValidation(false);
@@ -52,15 +57,15 @@ export default function Input() {
   };
 
   useEffect(() => {
-    if (isOpen === false || sender.email === "") {
-      if (isOpen === false) {
+    if (formState.isModalOpen === false || sender.email === "") {
+      if (formState.isModalOpen === false) {
         setCustomer(null);
       }
       if (sender.email === "") {
-        setValid(false);
+        setFormState({ ...formState, isValid: false });
       }
     }
-  }, [isOpen, sender.email]);
+  }, [formState.isModalOpen, sender.email]);
 
   return (
     <>
@@ -81,7 +86,7 @@ export default function Input() {
               placeholder="Please insert your email"
               required
             ></input>
-            {emailValidation && sender.email.length < 15 ? (
+            {formState.emailValidation && sender.email.length < 15 ? (
               <div>
                 <span style={{ color: `red` }}>
                   Email must have at least 15 characters!
@@ -89,7 +94,7 @@ export default function Input() {
               </div>
             ) : null}
 
-            {isValid ? (
+            {formState.isValid ? (
               <>
                 <input
                   onChange={handlePasswordInput}
@@ -111,15 +116,17 @@ export default function Input() {
             ) : null}
           </form>
 
-          {isValid && sender.password.length > 10 ? (
+          {formState.isValid && sender.password.length > 10 ? (
             <>
-              <button className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold">
-                Log in
-              </button>
+              <Link href="/components/movies">
+                <button className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold">
+                  Log in
+                </button>
+              </Link>
             </>
           ) : (
             <button
-              onClick={onForword}
+              onClick={onForward}
               className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold"
             >
               Forward
@@ -137,7 +144,7 @@ export default function Input() {
             Login data is only stored for logging in !
           </p>
         </div>
-        <Modal isOpen={isOpen} onClose={closeModal}>
+        <Modal isOpen={formState.isModalOpen} onClose={closeModal}>
           {!customer ? <AddForm onCreateClick={openModal} /> : null}
         </Modal>
       </section>

@@ -4,7 +4,7 @@ import Button from "./button/page";
 import Card from "./card/page";
 import { useEffect } from "react";
 
-const CreateUser = (props) => {
+export default function CreateUser(props) {
   const [userData, setUserData] = useState({
     name: "",
     surName: "",
@@ -21,7 +21,7 @@ const CreateUser = (props) => {
   });
 
   const [buttonColor, setButtonColor] = useState("changeButtonColor");
-  const [createUser, setcreateUser] = useState(false);
+  const [createAnUser, setcreateAnUser] = useState(false);
 
   const handleNameChange = (e) => {
     setUserData({ ...userData, name: e.target.value });
@@ -53,6 +53,59 @@ const CreateUser = (props) => {
     // setEmail("");
   };
 
+  useEffect(() => {
+    if (errorMessage.isValid === true) {
+      setButtonColor("changeButtonColor");
+    } else {
+      setButtonColor("primary-button");
+    }
+  }, [errorMessage]);
+
+  return (
+    <div>
+      <Card>
+        <h2 className="text-2xl font-bold">Create Account</h2>
+        <form onSubmit={createAnUser}>
+          <Input
+            value={userData.name}
+            onChange={handleNameChange}
+            placeholder="Name"
+            type="text"
+          />
+          <span>{errorMessage.saveName}</span>
+          <Input
+            value={userData.surName}
+            onChange={handleSurnameChange}
+            placeholder="Surname"
+            type="text"
+          />
+          <span>{errorMessage.Surname}</span>
+          <Input
+            value={userData.email}
+            onChange={handleEmailChange}
+            placeholder="Email"
+          />
+          <span>{errorMessage.email}</span>
+          <Input
+            value={userData.password}
+            onChange={handlePasswordChange}
+            placeholder="Password"
+          />
+          <span>{errorMessage.password}</span>
+          <Button
+            className={` ${buttonColor} `}
+            disabled={errorMessage.isValid}
+            onClick={props.onCreateClick}
+          >
+            Create
+          </Button>
+        </form>
+      </Card>
+    </div>
+  );
+}
+
+/*
   useEffect(() => {
     if (
       userData.name.trim().length <= 2 &&
@@ -115,90 +168,5 @@ const CreateUser = (props) => {
     }
   }, [userData.name, userData.surName, userData.email, userData.password]);
 
-  useEffect(() => {
-    if (errorMessage.isValid === true) {
-      setButtonColor("changeButtonColor");
-    } else {
-      setButtonColor("primary-button");
-    }
-  }, [errorMessage]);
-
-  return (
-    <div>
-      <Card>
-        <h2 className="text-2xl font-bold">Create Account</h2>
-        <form onSubmit={createUser}>
-          <Input
-            value={userData.name}
-            onChange={handleNameChange}
-            placeholder="Name"
-            type="text"
-          />
-          <span>{errorMessage.saveName}</span>
-          <Input
-            value={userData.surName}
-            onChange={handleSurnameChange}
-            placeholder="Surname"
-            type="text"
-          />
-          <span>{errorMessage.Surname}</span>
-          <Input
-            value={userData.email}
-            onChange={handleEmailChange}
-            placeholder="Email"
-          />
-          <span>{errorMessage.email}</span>
-          <Input
-            value={userData.password}
-            onChange={handlePasswordChange}
-            placeholder="Password"
-          />
-          <span>{errorMessage.password}</span>
-          <Button
-            className={` ${buttonColor} `}
-            disabled={errorMessage.isValid}
-            onClick={props.onCreateClick}
-          >
-            Create
-          </Button>
-        </form>
-      </Card>
-    </div>
-  );
-};
-
-export default CreateUser;
-
-/*
-
- useEffect(() => {
-  const { name, surName, email, password } = userData;
-
-  const nameErrorMessage =
-    name.trim().length <= 2 ? "The name should have at least 3 characters!" : "";
-  const surNameErrorMessage =
-    surName.trim().length <= 2
-      ? "The surname should have at least 3 characters!"
-      : "";
-  const emailErrorMessage =
-    email.trim().length <= 11 ? "Email should have at least 12 characters!" : "";
-  const passwordErrorMessage =
-    password.trim().length <= 9
-      ? "The password should have at least 10 numbers!"
-      : "";
-
-  setErrorMessage((prevState) => ({
-    ...prevState,
-    saveName: nameErrorMessage,
-    Surname: surNameErrorMessage,
-    email: emailErrorMessage,
-    password: passwordErrorMessage,
-    isValid:
-      nameErrorMessage ||
-      surNameErrorMessage ||
-      emailErrorMessage ||
-      passwordErrorMessage,
-  }));
-}, [userData.name, userData.surName, userData.email, userData.password]);
 
   */
