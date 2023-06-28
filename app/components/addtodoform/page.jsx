@@ -41,17 +41,69 @@ export default function CreateUser(props) {
 
   const createAccount = (e) => {
     e.preventDefault();
-
-    //  props.onAddTeam({
-    //     name: saveName,
-    //   surname: Surname,
-    //   email: email,
-    // });
-
-    // setSaveName("");
-    // setSurname("");
-    // setEmail("");
   };
+
+  useEffect(() => {
+    if (
+      userData.name.trim().length <= 2 &&
+      userData.surName.trim().length <= 2 &&
+      userData.email.trim().length <= 11 &&
+      userData.password.trim().length <= 11
+    ) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        saveName: "The name should have at least 3 characters!",
+        Surname: "The surname should have at least 3 characters!",
+        email: "Email should have at least 12 characters!",
+        password: "The password should have at least 9 numbers!",
+        isValid: true,
+      }));
+    } else if (userData.name.trim().length <= 2) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        saveName: "The name should have at least 3 characters!",
+        Surname: "",
+        email: "",
+        password: "",
+        isValid: true,
+      }));
+    } else if (userData.surName.trim().length <= 2) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        saveName: "",
+        Surname: "The surname should have at least 3 characters!",
+        email: "",
+        password: "",
+        isValid: true,
+      }));
+    } else if (userData.email.trim().length <= 11) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        saveName: "",
+        Surname: "",
+        email: "The email should have at least 12 characters!",
+        isValid: true,
+      }));
+    } else if (userData.password.trim().length <= 9) {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        saveName: "",
+        Surname: "",
+        email: "",
+        password: "The password should have at least 10 number!",
+        isValid: true,
+      }));
+    } else {
+      setErrorMessage((prevState) => ({
+        ...prevState,
+        saveName: "",
+        Surname: "",
+        email: "",
+        password: "",
+        isValid: false,
+      }));
+    }
+  }, [userData.name, userData.surName, userData.email, userData.password]);
 
   useEffect(() => {
     if (errorMessage.isValid === true) {
@@ -106,6 +158,49 @@ export default function CreateUser(props) {
 }
 
 /*
+
+ const handleNameChange = (e) => {
+    setUserData({ ...userData, name: e.target.value });
+    if (userData.name.length > 2) {
+      setErrorMessage({ ...errorMessage, isValid: true });
+    } else {
+      setErrorMessage({ ...errorMessage, isValid: false });
+    }
+  };
+
+  const handleSurnameChange = (e) => {
+    setUserData({ ...userData, surName: e.target.value });
+    if (userData.surName.length > 2) {
+      setErrorMessage({ ...errorMessage, isValid: true });
+    } else {
+      setErrorMessage({ ...errorMessage, isValid: false });
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setUserData({ ...userData, email: e.target.value });
+    if (userData.email.length > 12) {
+      setErrorMessage({ ...errorMessage, isValid: true });
+    } else {
+      setErrorMessage({ ...errorMessage, isValid: false });
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setUserData({ ...userData, password: e.target.value });
+
+    if (userData.password.length > 10) {
+      setErrorMessage({ ...errorMessage, isValid: true });
+    } else {
+      setErrorMessage({ ...errorMessage, isValid: false });
+    }
+  };
+
+  const createAccount = (e) => {
+   
+  };
+
+
   useEffect(() => {
     if (
       userData.name.trim().length <= 2 &&
