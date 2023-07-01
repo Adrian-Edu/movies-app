@@ -9,9 +9,15 @@ import Image from "next/image";
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
   const [isUserLoggedIn, setIsUserLogin] = useState(false);
+  const [dataFromChild, setDataFromChild] = useState("");
+  const data = "salut";
 
   const logInOut = () => {
     setIsUserLogin((prevState) => setIsUserLogin(!prevState));
+  };
+
+  const receiveData = (data) => {
+    setDataFromChild(data);
   };
 
   const fetchData = async () => {
@@ -22,12 +28,6 @@ export default function Home(props) {
     setMovieData(res.results);
   };
   fetchData();
-
-  const [dataFromChild, setDataFromChild] = useState("");
-
-  const receiveData = (data) => {
-    setDataFromChild(data);
-  };
 
   const filteredMovieData = movieData.filter((movie) =>
     movie.title
@@ -77,7 +77,7 @@ export default function Home(props) {
         </>
       ) : (
         <>
-          <SecondNavbar login={logInOut} />
+          <SecondNavbar send={data} login={logInOut} />
           <div className="flex justify-center items-center"></div>
           <Image
             style={{
