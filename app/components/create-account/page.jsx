@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Input from "./input/page";
 import Button from "./button/page";
 import Card from "./card/page";
 import { useEffect } from "react";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 export default function CreateUser(props) {
   const [userData, setUserData] = useState({
@@ -20,6 +20,8 @@ export default function CreateUser(props) {
     isValid: false,
     createUser: false,
   });
+
+  const [visible, setVisible] = useState(false);
 
   const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email);
   const [buttonColor, setButtonColor] = useState("changeButtonColor");
@@ -100,51 +102,84 @@ export default function CreateUser(props) {
     }
   }, [userData]);
 
+  const handleVisibilityChange = (e) => {
+    setVisible((prevState) => !prevState);
+
+    e.preventDefault();
+  };
+
   return (
     <div>
       <Card>
         <h2 className="text-2xl font-bold">Create Account</h2>
         <form onSubmit={() => {}}>
-          <Input
-            value={userData.name}
-            onChange={handleNameChange}
-            placeholder="Name"
-            type="text"
-          />
-          {errorMessage.name === true && userData.name.length < 3 ? (
-            <span>The surname should have at least 3 characters!</span>
-          ) : null}
+          <div className="flex justify-center items-center flex-col pt-2">
+            <input
+              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700  rounded-xl box-border truncate"
+              value={userData.name}
+              onChange={handleNameChange}
+              placeholder="Name"
+              type="text"
+            />
+            {errorMessage.name === true && userData.name.length < 3 ? (
+              <span>The name should have at least 3 characters!</span>
+            ) : null}
+          </div>
 
-          <Input
-            value={userData.surName}
-            onChange={handleSurnameChange}
-            placeholder="Surname"
-            type="text"
-          />
-          {errorMessage.surName === true && userData.surName.length < 3 ? (
-            <span>The surname should have at least 3 characters!</span>
-          ) : null}
-          <Input
-            value={userData.email}
-            onChange={handleEmailChange}
-            placeholder="Email"
-          />
-          {errorMessage.email === true && userData.email.length < 12 ? (
-            <span>The email should have at least 12 characters!</span>
-          ) : null}
-          {errorMessage.email === true &&
-          userData.email.length > 11 &&
-          !validemail ? (
-            <span>The email should contain @ and .</span>
-          ) : null}
-          <Input
-            value={userData.password}
-            onChange={handlePasswordChange}
-            placeholder="Password"
-          />
-          {errorMessage.password === true && userData.password.length < 10 ? (
-            <span>The password should have at least 10 characters!</span>
-          ) : null}
+          <div className="flex justify-center items-center flex-col pt-1">
+            <input
+              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700  rounded-xl box-border truncate"
+              value={userData.surName}
+              onChange={handleSurnameChange}
+              placeholder="Surname"
+              type="text"
+            />
+            {errorMessage.surName === true && userData.surName.length < 3 ? (
+              <span>The surname should have at least 3 characters!</span>
+            ) : null}
+          </div>
+
+          <div className="flex justify-center items-center flex-col pt-1">
+            <input
+              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700  rounded-xl box-border truncate"
+              value={userData.email}
+              onChange={handleEmailChange}
+              placeholder="Email"
+            />
+            {errorMessage.email === true && userData.email.length < 12 ? (
+              <span>The email should have at least 12 characters!</span>
+            ) : null}
+            {errorMessage.email === true &&
+            userData.email.length > 11 &&
+            !validemail ? (
+              <span>The email should contain @ and .</span>
+            ) : null}
+          </div>
+
+          <div className="pt-1 flex justify-center items-center flex-col ">
+            <div className="flex justify-center   border-2  border-stone-700 font-bold w-90  bg-white w-4/5 outline-0 rounded-xl box-border truncate">
+              <input
+                value={userData.password}
+                onChange={handlePasswordChange}
+                className="truncate py-2 pl-3 w-4/5 outline-0  bg-white"
+                id="passowrd"
+                name="user_passowrd"
+                placeholder="Please insert your password"
+                type={visible ? "text" : "password"}
+              ></input>
+              <div className="pt-2.5 w-1/5">
+                <button onClick={handleVisibilityChange}>
+                  {visible ? <IoIosEye /> : <IoIosEyeOff />}
+                </button>
+              </div>
+            </div>
+            {errorMessage.password === true && userData.password.length < 10 ? (
+              <div className="pt-2">
+                <span>The password must have at least 10 characters!</span>
+              </div>
+            ) : null}
+          </div>
+
           <Button
             className={` ${buttonColor} `}
             disabled={errorMessage.isValid}
