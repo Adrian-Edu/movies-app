@@ -3,10 +3,12 @@
 import AddForm from "../create-account/page";
 import Modal from "../modal/page";
 import { useState, useEffect } from "react";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 
 export default function Input() {
   const [passowrdValidation, setPasswordValidation] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -29,17 +31,27 @@ export default function Input() {
   };
 
   const handleEmailInput = (e) => {
-    setSender({ ...sender, email: e.target.value });
+    setSender({ ...sender, email: e.target.value.toLowerCase() });
   };
 
   const handlePasswordInput = (e) => {
     setSender({ ...sender, password: e.target.value });
   };
 
+  const handleVisibilityChange = (e) => {
+    setVisible((prevState) => !prevState);
+
+    e.preventDefault();
+  };
+
+  const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sender.email);
+
   const onForward = (e) => {
     if (sender.email === "") {
       setFormState({ ...formState, emailValidation: true });
     } else if (sender.email.length < 15) {
+      setFormState({ ...formState, emailValidation: true });
+    } else if (!validemail) {
       setFormState({ ...formState, emailValidation: true });
     } else {
       setFormState({ ...formState, emailValidation: false });
@@ -78,49 +90,66 @@ export default function Input() {
           </h2>
           <p className="text-xl mt-5 mb-2 ">Email</p>
           <form>
-            <input
-              onChange={handleEmailInput}
-              className="py-2 md:pr-36 pl-3 mb-3 rounded-lg border-2  border-stone-700 font-bold "
-              type="email"
-              id="email"
-              name="user_email"
-              placeholder="Please insert your email"
-              required
-            ></input>
-            {formState.emailValidation && sender.email.length < 15 ? (
+            <div>
+              <input
+                onChange={handleEmailInput}
+                className="py-2 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 mb-3 rounded-xl box-border truncate"
+                type="email"
+                name="user_email"
+                placeholder="Please insert your email ..."
+              ></input>
+
+              {formState.emailValidation && sender.email.length < 15 ? (
+                <div>
+                  <span style={{ color: `red` }}>
+                    Email must have at least 15 characters!
+                  </span>
+                </div>
+              ) : null}
+            </div>
+
+            {formState.emailValidation &&
+            sender.email.length > 14 &&
+            !validemail ? (
               <div>
                 <span style={{ color: `red` }}>
-                  Email must have at least 15 characters!
+                  Email must contain @ and . !
                 </span>
               </div>
             ) : null}
 
             {formState.isValid ? (
-              <>
-                <input
-                  onChange={handlePasswordInput}
-                  className="py-2 mt-3 md:pr-36 pl-3 mb-3  rounded-lg border-2  border-stone-700 font-bold "
-                  type="password"
-                  id="passowrd"
-                  name="user_passowrd"
-                  placeholder="Please insert your password"
-                  required
-                ></input>
+              <div className="pt-1 flex justify-center items-center flex-col ">
+                <div className="flex justify-center   border-2  border-stone-700 font-bold w-90  bg-white w-4/5 outline-0 rounded-xl box-border truncate">
+                  <input
+                    onChange={handlePasswordInput}
+                    className="truncate py-2 pl-3 w-4/5 outline-0  bg-white"
+                    id="passowrd"
+                    name="user_passowrd"
+                    placeholder="Please insert your password"
+                    type={visible ? "text" : "password"}
+                  ></input>
+                  <div className="pt-3 py-2 w-1/5">
+                    <button onClick={handleVisibilityChange}>
+                      {visible ? <IoIosEye /> : <IoIosEyeOff />}
+                    </button>
+                  </div>
+                </div>
                 {passowrdValidation && sender.password.length < 10 ? (
-                  <div>
+                  <div className="pt-2">
                     <span style={{ color: `red` }}>
                       The password must have at least 10 characters!
                     </span>
                   </div>
                 ) : null}
-              </>
+              </div>
             ) : null}
           </form>
 
           {formState.isValid && sender.password.length > 10 ? (
             <>
-              <Link href="/components/movies">
-                <button className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold">
+              <Link href="">
+                <button className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold">
                   Log in
                 </button>
               </Link>
@@ -128,7 +157,7 @@ export default function Input() {
           ) : (
             <button
               onClick={onForward}
-              className=" mt-3 mb-3 bg-cyan-400 py-2 px-16 md:px-36 rounded-lg border-2 border-stone-700 font-bold"
+              className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
             >
               Forward
             </button>
@@ -137,7 +166,7 @@ export default function Input() {
           <p className="text-xl  mt-3 mb-3 ">You don't have an account?</p>
           <button
             onClick={openModal}
-            className=" mb-3 bg-cyan-400 py-2 px-10 md:px-28 rounded-lg border-2 border-stone-700 font-bold"
+            className=" mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
           >
             Create account
           </button>
