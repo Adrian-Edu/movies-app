@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,12 +40,13 @@ const Modal = (props) => {
 
   return (
     <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"}`}>
-      <i
+      <FontAwesomeIcon
         onClick={closeModal}
-        className="close-icon fa fa-times-circle-o"
+        icon={faTimesCircle}
+        className="text-2xl absolute top-5 right-5 cursor-pointer text-yellow-300"
         aria-hidden="true"
-      ></i>
-      <div className="modal-content"></div>
+      />
+      <div className="z-1001"></div>
       {props.children}
     </div>
   );

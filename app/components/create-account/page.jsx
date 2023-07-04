@@ -88,7 +88,7 @@ export default function CreateUser(props) {
       userData.name.length > 2 &&
       userData.surName.length > 2 &&
       userData.email.length > 11 &&
-      userData.password.length > 9
+      userData.password.length >= 9
     ) {
       setErrorMessage({ ...errorMessage, isValid: true });
     } else {
@@ -115,7 +115,7 @@ export default function CreateUser(props) {
         <form onSubmit={() => {}}>
           <div className="flex justify-center items-center flex-col pt-2">
             <input
-              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700  rounded-xl box-border truncate"
+              className="py-1 pl-3  w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold  rounded-xl box-border truncate"
               value={userData.name}
               onChange={handleNameChange}
               placeholder="Name"
@@ -128,7 +128,7 @@ export default function CreateUser(props) {
 
           <div className="flex justify-center items-center flex-col pt-1">
             <input
-              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700  rounded-xl box-border truncate"
+              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold rounded-xl box-border truncate"
               value={userData.surName}
               onChange={handleSurnameChange}
               placeholder="Surname"
@@ -141,7 +141,7 @@ export default function CreateUser(props) {
 
           <div className="flex justify-center items-center flex-col pt-1">
             <input
-              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700  rounded-xl box-border truncate"
+              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold   rounded-xl box-border truncate "
               value={userData.email}
               onChange={handleEmailChange}
               placeholder="Email"
@@ -157,11 +157,11 @@ export default function CreateUser(props) {
           </div>
 
           <div className="pt-1 flex justify-center items-center flex-col ">
-            <div className="flex justify-center   border-2  border-stone-700 font-bold w-90  bg-white w-4/5 outline-0 rounded-xl box-border truncate">
+            <div className="flex justify-center   border-2  border-stone-700 font-bold  bg-white w-4/5 outline-0 rounded-xl box-border truncate">
               <input
                 value={userData.password}
                 onChange={handlePasswordChange}
-                className="truncate py-2 pl-3 w-4/5 outline-0  bg-white"
+                className="truncate py-2 pl-3 w-4/5 outline-0  bg-white text-m"
                 id="passowrd"
                 name="user_passowrd"
                 placeholder="Please insert your password"

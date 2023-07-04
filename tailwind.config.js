@@ -17,6 +17,15 @@ module.exports = {
       minHeight: {
         "1/2": "50%",
       },
+      cardFormat: {
+        width: "450px",
+        height: "480px",
+        padding: "40px 20px",
+        borderStyle: "solid",
+        borderColor: "rgba(0, 0, 0, 0.452)",
+        borderRadius: "15px",
+        border: "2px solid yellow",
+      },
     },
     screens: {
       s: "320px",
