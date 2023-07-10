@@ -93,3 +93,7 @@ export default function Home(props) {
     </section>
   );
 }
+
+// le pun pe invers
+// office 365
+// backgroundul mai putin transparent

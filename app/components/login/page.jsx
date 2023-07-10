@@ -159,7 +159,7 @@ export default function Input() {
               onClick={onForward}
               className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
             >
-              Forward
+              Next
             </button>
           )}
 
