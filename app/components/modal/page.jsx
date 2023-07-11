@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +42,17 @@ const Modal = (props) => {
 
   return (
     <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"}`}>
+      <div className="z-1001"></div>
+      {props.children}
+    </div>
+  );
+};
+
+export default Modal;
+
+/*
+
+ <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"}`}>
       <FontAwesomeIcon
         onClick={closeModal}
         icon={faTimesCircle}
@@ -51,9 +62,5 @@ const Modal = (props) => {
       <div className="z-1001"></div>
       {props.children}
     </div>
-  );
-};
 
-export default Modal;
-
-//proba
+    */

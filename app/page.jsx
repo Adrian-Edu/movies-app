@@ -10,7 +10,6 @@ export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
   const [isUserLoggedIn, setIsUserLogin] = useState(false);
   const [dataFromChild, setDataFromChild] = useState("");
-  const data = "salut";
 
   const logInOut = () => {
     setIsUserLogin((prevState) => setIsUserLogin(!prevState));
