@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Modal = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,16 +41,30 @@ const Modal = (props) => {
 
   return (
     <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"}`}>
+      <div className="z-1001"></div>
+      {props.children}
+      <AiOutlineClose
+        onClick={closeModal}
+        className="text-2xl absolute top-5 right-5 cursor-pointer text-yellow-300"
+        aria-hidden="true"
+      />
+    </div>
+  );
+};
+
+export default Modal;
+
+/*
+
+
       <FontAwesomeIcon
         onClick={closeModal}
         icon={faTimesCircle}
         className="text-2xl absolute top-5 right-5 cursor-pointer text-yellow-300"
         aria-hidden="true"
       />
-      <div className="z-1001"></div>
-      {props.children}
-    </div>
-  );
-};
+   
 
-export default Modal;
+
+
+    */
