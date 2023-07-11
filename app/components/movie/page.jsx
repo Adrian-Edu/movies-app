@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Movie({ title, release_date, poster_path, id }) {
+function MoviePage({ title, release_date, poster_path, id }) {
   const imagePath = "https://image.tmdb.org/t/p/original";
   return (
     <section>
@@ -19,3 +19,5 @@ export default function Movie({ title, release_date, poster_path, id }) {
     </section>
   );
 }
+
+export default MoviePage;
