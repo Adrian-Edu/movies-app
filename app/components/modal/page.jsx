@@ -53,18 +53,3 @@ const Modal = (props) => {
 };
 
 export default Modal;
-
-/*
-
-
-      <FontAwesomeIcon
-        onClick={closeModal}
-        icon={faTimesCircle}
-        className="text-2xl absolute top-5 right-5 cursor-pointer text-yellow-300"
-        aria-hidden="true"
-      />
-   
-
-
-
-    */
