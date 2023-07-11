@@ -1,6 +1,6 @@
 "use client";
 
-import Movie from "./movie";
+import Movie from "./components/movie/page.jsx";
 import Navbar from "./components/navbar/page.jsx";
 import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedOut, setIsUserLogin] = useState(true);
+  const [isUserLoggedOut, setIsUserLogin] = useState(false);
   const [dataFromChild, setDataFromChild] = useState("");
 
   const logInOut = () => {

@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className={` ${roboto.variable}  md: pb-12 bg-cyan-300 h-fit`}>
-        <main> {children}</main>
+        {children}
         <Footer />
       </body>
     </html>
