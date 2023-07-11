@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedOut, setIsUserLogin] = useState(false);
+  const [isUserLoggedOut, setIsUserLogin] = useState(true);
   const [dataFromChild, setDataFromChild] = useState("");
 
   const logInOut = () => {
