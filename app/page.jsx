@@ -76,7 +76,7 @@ export default function Home(props) {
         </>
       ) : (
         <>
-          <SecondNavbar send={data} login={logInOut} />
+          <SecondNavbar login={logInOut} />
           <div className="flex justify-center items-center"></div>
           <Image
             style={{
