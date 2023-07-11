@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedIn, setIsUserLogin] = useState(false);
+  const [isUserLoggedOut, setIsUserLogin] = useState(true);
   const [dataFromChild, setDataFromChild] = useState("");
 
   const logInOut = () => {
@@ -58,7 +58,21 @@ export default function Home(props) {
 
   return (
     <section>
-      {isUserLoggedIn ? (
+      {isUserLoggedOut ? (
+        <>
+          <SecondNavbar login={logInOut} />
+          <div className="flex justify-center items-center"></div>
+          <Image
+            style={{
+              width: "2700px",
+            }}
+            src="/lastest-movies.jpg"
+            width={1500}
+            height={1500}
+            alt="Latest movies"
+          />
+        </>
+      ) : (
         <>
           <Navbar receive={receiveData} logout={logInOut} />
           <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5">
@@ -73,20 +87,6 @@ export default function Home(props) {
                 />
               ))}
           </div>
-        </>
-      ) : (
-        <>
-          <SecondNavbar login={logInOut} />
-          <div className="flex justify-center items-center"></div>
-          <Image
-            style={{
-              width: "2700px",
-            }}
-            src="/lastest-movies.jpg"
-            width={1500}
-            height={1500}
-            alt="Latest movies"
-          />
         </>
       )}
     </section>
