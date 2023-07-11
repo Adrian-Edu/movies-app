@@ -1,6 +1,6 @@
 "use client";
 
-import Movie from "./movie";
+import Movie from "./components/movie/page.jsx";
 import Navbar from "./components/navbar/page.jsx";
 import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
