@@ -18,7 +18,7 @@ export default function Navbar(props) {
         <Link href="/components/login">
           <button
             type="button"
-            className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2 md:text-lg md:px-3 md:ml-20 md:mr-9 lg:mx-2"
+            className="btn px-1 btn-warning text-xs m:mr-1 l:mr-2  md:px-3 md:ml-20 md:mr-9 lg:text-lg lg:mx-2"
             onClick={props.login}
           >
             Sing In

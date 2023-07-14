@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedOut, setIsUserLogin] = useState(true);
+  const [isUserLoggedOut, setIsUserLogin] = useState(false);
   const [dataFromChild, setDataFromChild] = useState("");
 
   const logInOut = () => {
@@ -61,10 +61,10 @@ export default function Home(props) {
       {isUserLoggedOut ? (
         <>
           <SecondNavbar login={logInOut} />
-          <div className="flex justify-center items-center"></div>
+          <div className="mt-14"></div>
           <Image
             style={{
-              width: "2700px",
+              width: "2000px",
             }}
             src="/lastest-movies.jpg"
             width={1500}
@@ -75,7 +75,7 @@ export default function Home(props) {
       ) : (
         <>
           <Navbar receive={receiveData} logout={logInOut} />
-          <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5">
+          <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 h-auto">
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (
                 <Movie
@@ -92,3 +92,13 @@ export default function Home(props) {
     </section>
   );
 }
+
+/*
+
+1. Delimitare clara componente/pagini
+2. 404 error page
+3. 404 error page dinamic routes
+4. state global pentru controlul componentelor
+5. sending data to server and fetch data from server
+
+*/
