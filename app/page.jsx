@@ -1,6 +1,6 @@
 "use client";
 
-import Movie from "./components/movie/page.jsx";
+import Movie from "./pages/movie/page.jsx";
 import Navbar from "./components/navbar/page.jsx";
 import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
@@ -95,10 +95,12 @@ export default function Home(props) {
 
 /*
 
-1. Delimitare clara componente/pagini
-2. 404 error page
-3. 404 error page dinamic routes
+2. 404 error page inside dinamic route 
+
+3. 404 error page dinamic routes outside dinamic route
+
 4. state global pentru controlul componentelor
+
 5. sending data to server and fetch data from server
 
 */

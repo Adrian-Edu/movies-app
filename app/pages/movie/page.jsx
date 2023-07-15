@@ -7,7 +7,7 @@ export default function Movie(props) {
     <section>
       <h2 className="font-bold truncate ... sm:text-2xl ">{props.title}</h2>
       <h3 className="mb-2 md:text-xl">{props.release_date}</h3>
-      <Link href={`/${props.id}`}>
+      <Link href={`/pages/${props.id}`}>
         <Image
           src={imagePath + props.poster_path}
           width={360}
