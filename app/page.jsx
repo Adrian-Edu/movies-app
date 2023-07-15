@@ -5,10 +5,11 @@ import Navbar from "./components/navbar/page.jsx";
 import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
 import Image from "next/image";
+import Footer from "./components/footer/page.jsx";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedOut, setIsUserLogin] = useState(false);
+  const [isUserLoggedOut, setIsUserLogin] = useState(true);
   const [dataFromChild, setDataFromChild] = useState("");
 
   const logInOut = () => {
@@ -71,6 +72,7 @@ export default function Home(props) {
             height={1500}
             alt="Latest movies"
           />
+          <Footer />
         </>
       ) : (
         <>
@@ -87,6 +89,7 @@ export default function Home(props) {
                 />
               ))}
           </div>
+          <Footer />
         </>
       )}
     </section>
@@ -95,12 +98,14 @@ export default function Home(props) {
 
 /*
 
-2. 404 error page inside dinamic route 
+1. Componente vs pagini - OK
 
-3. 404 error page dinamic routes outside dinamic route
+2. 404 error page outside dinamic route - ok
 
-4. state global pentru controlul componentelor
+3. 404 error page inside dinamic route - aici
 
-5. sending data to server and fetch data from server
+4. state global pentru controlul componentelor - aici 
+
+5. sending data to server and fetch data from server - aici
 
 */
