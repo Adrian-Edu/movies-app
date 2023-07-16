@@ -102,7 +102,7 @@ export default function Home(props) {
 
 2. 404 error page outside dinamic route - ok
 
-3. 404 error page inside dinamic route - aici
+3. 404 error page inside dinamic route - ok
 
 4. state global pentru controlul componentelor - aici 
 
