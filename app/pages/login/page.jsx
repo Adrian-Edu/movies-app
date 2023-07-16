@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 import { useStore } from "zustand";
-import userData from "../../api/route";
+import userData from "../../api/store";
 
 export default function Input() {
   const [passowrdValidation, setPasswordValidation] = useState(false);
