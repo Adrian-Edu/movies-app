@@ -1,9 +1,8 @@
-export async function GET() {
-  const users = [
-    { id: 1, name: "Adrian" },
-    { id: 2, name: "Bogdan" },
-    { id: 3, name: "Alexandru" },
-  ];
+import { create } from "zustand";
 
-  return new Response(JSON.stringify(users));
-}
+const userData = create((set) => ({
+  userExists: { email: "", password: "" },
+  newUser: { name: "", surname: "", email: "", password: "" },
+}));
+
+export default userData;
