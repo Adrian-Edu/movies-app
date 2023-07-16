@@ -1,7 +1,7 @@
 "use client";
 
-import AddForm from "../create-account/page";
-import Modal from "../../pages/modal/page";
+import AddForm from "./modal/create-account/page";
+import Modal from "./modal/page";
 import { useState, useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";

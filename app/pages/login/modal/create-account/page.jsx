@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Button from "./button/page";
-import Card from "./card/page";
+import Button from "../../../../components/button/page";
+import Card from "../../../../components/card/page";
 import { useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
