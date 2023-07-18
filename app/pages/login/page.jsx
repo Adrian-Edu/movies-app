@@ -185,5 +185,3 @@ export default function Input() {
     </>
   );
 }
-
-//      <p>{users[0].email}</p>

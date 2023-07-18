@@ -11,14 +11,9 @@ import store from "../app/api/store.jsx";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const { isLogOut } = useStore(store);
+  const { isLogOut, logIn, logOut } = useStore(store);
 
-  // const [isUserLoggedOut, setIsUserLogin] = useState(true);
   const [dataFromChild, setDataFromChild] = useState("");
-
-  // const logInOut = () => {
-  //  setIsUserLogin((prevState) => setIsUserLogin(!prevState));
-  // };
 
   const receiveData = (data) => {
     setDataFromChild(data);
@@ -61,14 +56,11 @@ export default function Home(props) {
     );
   }
 
-  //  <SecondNavbar login={logInOut} />
-  // <Navbar receive={receiveData} logout={logInOut} />
-
   return (
     <section>
       {isLogOut ? (
         <>
-          <SecondNavbar />
+          <SecondNavbar  />
           <div className="mt-14"></div>
           <Image
             style={{
@@ -83,7 +75,7 @@ export default function Home(props) {
         </>
       ) : (
         <>
-          <Navbar receive={receiveData} />
+          <Navbar receive={receiveData} logout={logOut} />
           <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 h-auto">
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (

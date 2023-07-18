@@ -3,6 +3,9 @@ import { createStore } from "zustand";
 const store = createStore((set) => ({
   users: [{ email: "adrian_edu@yahoo.com", password: "Headhunter@7" }],
   isLogOut: true,
+
+  logIn: () => set((state) => ({ isLogOut: !state.isLogOut })),
+  logOut: () => set((state) => ({ isLogOut: !state.isLogOut })),
 }));
 
 export default store;
