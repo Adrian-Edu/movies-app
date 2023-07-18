@@ -6,15 +6,19 @@ import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
 import Image from "next/image";
 import Footer from "./components/footer/page.jsx";
+import { useStore } from "zustand";
+import store from "../app/api/store.jsx";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const [isUserLoggedOut, setIsUserLogin] = useState(true);
+  const { isLogOut } = useStore(store);
+
+  // const [isUserLoggedOut, setIsUserLogin] = useState(true);
   const [dataFromChild, setDataFromChild] = useState("");
 
-  const logInOut = () => {
-    setIsUserLogin((prevState) => setIsUserLogin(!prevState));
-  };
+  // const logInOut = () => {
+  //  setIsUserLogin((prevState) => setIsUserLogin(!prevState));
+  // };
 
   const receiveData = (data) => {
     setDataFromChild(data);
@@ -57,11 +61,14 @@ export default function Home(props) {
     );
   }
 
+  //  <SecondNavbar login={logInOut} />
+  // <Navbar receive={receiveData} logout={logInOut} />
+
   return (
     <section>
-      {isUserLoggedOut ? (
+      {isLogOut ? (
         <>
-          <SecondNavbar login={logInOut} />
+          <SecondNavbar />
           <div className="mt-14"></div>
           <Image
             style={{
@@ -76,7 +83,7 @@ export default function Home(props) {
         </>
       ) : (
         <>
-          <Navbar receive={receiveData} logout={logInOut} />
+          <Navbar receive={receiveData} />
           <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 h-auto">
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (

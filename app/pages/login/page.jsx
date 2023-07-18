@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 import { useStore } from "zustand";
-import userData from "../../api/store";
+import store from "../../api/store";
 
 export default function Input() {
   const [passowrdValidation, setPasswordValidation] = useState(false);
@@ -24,7 +24,7 @@ export default function Input() {
     password: "",
   });
 
-  const { userExists, newUser } = useStore(userData);
+  const { users } = useStore(store);
 
   const closeModal = () => {
     setFormState({ ...formState, isModalOpen: false });
@@ -93,6 +93,7 @@ export default function Input() {
             The movie list can be viewed by logging in.
           </h2>
           <p className="text-xl mt-5 mb-2 ">Email</p>
+
           <form>
             <div>
               <input
@@ -102,7 +103,6 @@ export default function Input() {
                 name="user_email"
                 placeholder="Please insert your email ..."
               ></input>
-
               {formState.emailValidation && sender.email.length < 15 ? (
                 <div>
                   <span style={{ color: `red` }}>
@@ -185,3 +185,5 @@ export default function Input() {
     </>
   );
 }
+
+//      <p>{users[0].email}</p>
