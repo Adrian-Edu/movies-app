@@ -6,14 +6,14 @@ import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState } from "react";
 import Image from "next/image";
 import Footer from "./components/footer/page.jsx";
-import { useStore } from "zustand";
-import store from "../app/api/store.jsx";
+import { useStore } from "../app/api/store.jsx";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);
-  const { isLogOut, logIn, logOut } = useStore(store);
-
   const [dataFromChild, setDataFromChild] = useState("");
+  const isLogOut = useStore((state) => state.isLogOut);
+  const logIn = useStore((state) => state.logIn);
+  const logOut = useStore((state) => state.logOut);
 
   const receiveData = (data) => {
     setDataFromChild(data);
@@ -60,7 +60,7 @@ export default function Home(props) {
     <section>
       {isLogOut ? (
         <>
-          <SecondNavbar  />
+          <SecondNavbar login={logIn} />
           <div className="mt-14"></div>
           <Image
             style={{

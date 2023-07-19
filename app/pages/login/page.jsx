@@ -1,12 +1,11 @@
 "use client";
 
-import AddForm from "./modal/create-account/page";
+import AddForm from "./create-account/page";
 import Modal from "./modal/page";
 import { useState, useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
-import { useStore } from "zustand";
-import store from "../../api/store";
+import { useStore } from "../../api/store";
 
 export default function Input() {
   const [passowrdValidation, setPasswordValidation] = useState(false);
@@ -24,7 +23,9 @@ export default function Input() {
     password: "",
   });
 
-  const { users } = useStore(store);
+  const logIn = useStore((state) => state.logIn);
+  const logOut = useStore((state) => state.logOut);
+  const userExists = useStore((state) => state.existentUsers);
 
   const closeModal = () => {
     setFormState({ ...formState, isModalOpen: false });
@@ -71,6 +72,15 @@ export default function Input() {
     }
 
     e.preventDefault();
+  };
+
+  const changeState = () => {
+    if (
+      userExists[0].email === sender.email &&
+      userExists[0].password === sender.password
+    ) {
+      logIn();
+    }
   };
 
   useEffect(() => {
@@ -152,8 +162,11 @@ export default function Input() {
 
           {formState.isValid && sender.password.length > 10 ? (
             <>
-              <Link href="">
-                <button className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold">
+              <Link href="/">
+                <button
+                  onClick={changeState}
+                  className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
+                >
                   Log in
                 </button>
               </Link>

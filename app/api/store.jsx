@@ -1,14 +1,13 @@
-import { createStore } from "zustand";
+import { create } from "zustand";
 
-const store = createStore((set) => ({
-  users: [{ email: "adrian_edu@yahoo.com", password: "Headhunter@7" }],
+export const useStore = create((set) => ({
+  existentUsers: [{ email: "adrian_edu@yahoo.com", password: "Headhunter@7" }],
+  nonexistentUsers: [],
   isLogOut: true,
 
   logIn: () => set((state) => ({ isLogOut: !state.isLogOut })),
   logOut: () => set((state) => ({ isLogOut: !state.isLogOut })),
 }));
-
-export default store;
 
 /*
 
