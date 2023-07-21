@@ -1,6 +1,6 @@
 "use client";
 
-import AddForm from "./create-account/page";
+import AddForm from "./modal/create-account/page";
 import Modal from "./modal/page";
 import { useState, useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
@@ -14,26 +14,20 @@ export default function Input() {
   const [formState, setFormState] = useState({
     isValid: false,
     emailValidation: false,
-    isModalOpen: false,
+    emailExist: true,
   });
 
-  const [customer, setCustomer] = useState(null);
+  // const [customer, setCustomer] = useState(null);
   const [sender, setSender] = useState({
     email: "",
     password: "",
   });
 
   const logIn = useStore((state) => state.logIn);
-  const logOut = useStore((state) => state.logOut);
   const userExists = useStore((state) => state.existentUsers);
-
-  const closeModal = () => {
-    setFormState({ ...formState, isModalOpen: false });
-  };
-
-  const openModal = () => {
-    setFormState({ ...formState, isModalOpen: true });
-  };
+  const isModalOpen = useStore((state) => state.isModalOpen);
+  const openModal = useStore((state) => state.openModal);
+  const closeModal = useStore((state) => state.closeModal);
 
   const handleEmailInput = (e) => {
     setSender({ ...sender, email: e.target.value.toLowerCase() });
@@ -58,6 +52,9 @@ export default function Input() {
       setFormState({ ...formState, emailValidation: true });
     } else if (!validemail) {
       setFormState({ ...formState, emailValidation: true });
+    } else if (userExists[0].email !== sender.email) {
+      setFormState({ ...formState, emailValidation: true });
+      setFormState({ ...formState, emailExist: false });
     } else {
       setFormState({ ...formState, emailValidation: false });
       setFormState({ ...formState, isValid: true });
@@ -84,20 +81,20 @@ export default function Input() {
   };
 
   useEffect(() => {
-    if (formState.isModalOpen === false || sender.email === "") {
-      if (formState.isModalOpen === false) {
-        setCustomer(null);
+    if (isModalOpen === false || sender.email === "") {
+      if (isModalOpen === false) {
+        //    setCustomer(null);
       }
-      if (sender.email === "") {
+      if (sender.email === "" || userExists[0].email !== sender.email) {
         setFormState({ ...formState, isValid: false });
       }
     }
-  }, [formState.isModalOpen, sender.email]);
+  }, [isModalOpen, sender.email]);
 
   return (
     <>
-      <section className=" flex justify-center content-center text-center my-32 w-5/5">
-        <div className="bg-yellow-100 w-4/5 md:w-6/12 xl:w-3/12 rounded-md">
+      <section className=" flex justify-center content-center text-center mt-32">
+        <div className="bg-yellow-100  w-4/5 md:w-6/12 xl:w-3/12 rounded-md">
           <h1 className="text-2xl  mt-5 mb-3 font-bold">Authentification</h1>
           <h2 className="text-xl  mt-5 mb-3 ">
             The movie list can be viewed by logging in.
@@ -117,6 +114,14 @@ export default function Input() {
                 <div>
                   <span style={{ color: `red` }}>
                     Email must have at least 15 characters!
+                  </span>
+                </div>
+              ) : null}
+              {sender.email.length > 14 &&
+              userExists[0].email !== sender.email ? (
+                <div>
+                  <span style={{ color: `red` }}>
+                    There is no account with this email address.
                   </span>
                 </div>
               ) : null}
@@ -191,10 +196,12 @@ export default function Input() {
             Login data is only stored for logging in !
           </p>
         </div>
-        <Modal isOpen={formState.isModalOpen} onClose={closeModal}>
-          {!customer ? <AddForm onCreateClick={openModal} /> : null}
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <AddForm onCreateClick={openModal} />
         </Modal>
       </section>
     </>
   );
 }
+
+// {!customer ? <AddForm onCreateClick={openModal} /> : null}
