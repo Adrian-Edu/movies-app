@@ -3,7 +3,7 @@
 import Movie from "./pages/movie/page.jsx";
 import Navbar from "./components/navbar/page.jsx";
 import SecondNavbar from "./components/navbar-secondary/page.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "./components/footer/page.jsx";
 import { useStore } from "../app/api/store.jsx";
@@ -19,14 +19,16 @@ export default function Home(props) {
     setDataFromChild(data);
   };
 
-  const fetchData = async () => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.customKey}`
-    );
-    const res = await data.json();
-    setMovieData(res.results);
-  };
-  fetchData();
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.customKey}`
+      );
+      const res = await data.json();
+      setMovieData(res.results);
+    };
+    fetchData();
+  }, []);
 
   const filteredMovieData = movieData.filter((movie) =>
     movie.title
@@ -94,17 +96,3 @@ export default function Home(props) {
     </section>
   );
 }
-
-/*
-
-1. Componente vs pagini - OK
-
-2. 404 error page outside dinamic route - ok
-
-3. 404 error page inside dinamic route - ok
-
-4. state global pentru controlul componentelor - aici 
-
-5. sending data to server and fetch data from server - aici
-
-*/

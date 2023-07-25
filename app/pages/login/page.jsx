@@ -17,7 +17,6 @@ export default function Input() {
     emailExist: true,
   });
 
-  // const [customer, setCustomer] = useState(null);
   const [sender, setSender] = useState({
     email: "",
     password: "",
@@ -48,7 +47,7 @@ export default function Input() {
   const onForward = (e) => {
     if (sender.email === "") {
       setFormState({ ...formState, emailValidation: true });
-    } else if (sender.email.length < 15) {
+    } else if (sender.email.length < 12) {
       setFormState({ ...formState, emailValidation: true });
     } else if (!validemail) {
       setFormState({ ...formState, emailValidation: true });
@@ -81,15 +80,10 @@ export default function Input() {
   };
 
   useEffect(() => {
-    if (isModalOpen === false || sender.email === "") {
-      if (isModalOpen === false) {
-        //    setCustomer(null);
-      }
-      if (sender.email === "" || userExists[0].email !== sender.email) {
-        setFormState({ ...formState, isValid: false });
-      }
+    if (sender.email === "" || userExists[0].email !== sender.email) {
+      setFormState({ ...formState, isValid: false });
     }
-  }, [isModalOpen, sender.email]);
+  }, [isModalOpen, sender.email, sender.password]);
 
   return (
     <>
@@ -110,14 +104,14 @@ export default function Input() {
                 name="user_email"
                 placeholder="Please insert your email ..."
               ></input>
-              {formState.emailValidation && sender.email.length < 15 ? (
+              {formState.emailValidation && sender.email.length < 12 ? (
                 <div>
                   <span style={{ color: `red` }}>
-                    Email must have at least 15 characters!
+                    Email must have at least 12 characters!
                   </span>
                 </div>
               ) : null}
-              {sender.email.length > 14 &&
+              {sender.email.length > 11 &&
               userExists[0].email !== sender.email ? (
                 <div>
                   <span style={{ color: `red` }}>
@@ -128,7 +122,7 @@ export default function Input() {
             </div>
 
             {formState.emailValidation &&
-            sender.email.length > 14 &&
+            sender.email.length > 11 &&
             !validemail ? (
               <div>
                 <span style={{ color: `red` }}>
@@ -154,10 +148,18 @@ export default function Input() {
                     </button>
                   </div>
                 </div>
-                {passowrdValidation && sender.password.length < 10 ? (
+                {passowrdValidation ? (
                   <div className="pt-2">
                     <span style={{ color: `red` }}>
                       The password must have at least 10 characters!
+                    </span>
+                  </div>
+                ) : null}
+                {sender.password.length > 9 &&
+                userExists[0].password !== sender.password ? (
+                  <div className="pt-2">
+                    <span style={{ color: `red` }}>
+                      The password you have provided is invalid!
                     </span>
                   </div>
                 ) : null}
@@ -165,7 +167,9 @@ export default function Input() {
             ) : null}
           </form>
 
-          {formState.isValid && sender.password.length > 10 ? (
+          {formState.isValid &&
+          sender.password.length > 10 &&
+          userExists[0].password === sender.password ? (
             <>
               <Link href="/">
                 <button
@@ -203,5 +207,3 @@ export default function Input() {
     </>
   );
 }
-
-// {!customer ? <AddForm onCreateClick={openModal} /> : null}

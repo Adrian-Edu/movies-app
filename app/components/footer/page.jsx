@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <section className="text-center text-lg  md:text-3xl  bg-black text-yellow-400 py-5 relative bottom-[-50px] ">
+    <section className="text-center text-base md:text-xl  lg:text-2xl  bg-black text-yellow-400 py-5 relative bottom-[-105px] ">
       <div className="grid leading-10">
         <Link className="link link-hover" href="/">
           Home Page

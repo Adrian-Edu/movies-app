@@ -1,7 +1,11 @@
 import { create } from "zustand";
 
 export const useStore = create((set) => ({
-  existentUsers: [{ email: "adrian_edu@yahoo.com", password: "Headhunter@7" }],
+  existentUsers: [
+    { email: "demo@demo.com", password: "demo@demo.com" },
+    { email: "sweet_florentin@yahoo.com", password: "AdrianEdu@7" },
+  ],
+
   nonexistentUsers: [],
   isLogOut: true,
   isModalOpen: false,
