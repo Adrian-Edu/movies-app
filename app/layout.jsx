@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body className={` ${roboto.variable}  md: pb-12 bg-cyan-300 h-fit`}>
+      <body className={` ${roboto.variable}  md: pb-12 bg-cyan-300 h-screen`}>
         <main className="h-96 l:h-auto">{children}</main>
       </body>
     </html>
