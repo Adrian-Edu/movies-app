@@ -63,7 +63,7 @@ export default function Home(props) {
       {isLogOut ? (
         <main className="h-screen">
           <SecondNavbar login={logIn} />
-          <div className="mt-14"></div>
+          <div className="mt-14 l:mt-6"></div>
           <Image
             style={{
               width: "2000px",
@@ -73,7 +73,7 @@ export default function Home(props) {
             height={1500}
             alt="Latest movies"
           />
-          <footer className="mt-32 m:mt-28 md:mt-0">
+          <footer className="relative -bottom-36 left-0 right-0 md:bottom-0  ">
             <Footer />
           </footer>
         </main>
