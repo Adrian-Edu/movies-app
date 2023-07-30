@@ -24,6 +24,12 @@ export default function Input() {
 
   const logIn = useStore((state) => state.logIn);
   const users = useStore((state) => state.users);
+  const usersMap = users.map((item) => {
+    const users = item;
+    const mapedUsersValues = Object.values(users);
+    return mapedUsersValues;
+  });
+
   const isModalOpen = useStore((state) => state.isModalOpen);
   const openModal = useStore((state) => state.openModal);
   const closeModal = useStore((state) => state.closeModal);
@@ -94,6 +100,7 @@ export default function Input() {
             The movie list can be viewed by logging in.
           </h2>
           <p className="text-xl mt-5 mb-2 ">Email</p>
+          {usersMap}
           <form>
             <div>
               <input
