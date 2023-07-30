@@ -23,7 +23,7 @@ export default function Input() {
   });
 
   const logIn = useStore((state) => state.logIn);
-  const userExists = useStore((state) => state.existentUsers);
+  const users = useStore((state) => state.users);
   const isModalOpen = useStore((state) => state.isModalOpen);
   const openModal = useStore((state) => state.openModal);
   const closeModal = useStore((state) => state.closeModal);
@@ -51,7 +51,7 @@ export default function Input() {
       setFormState({ ...formState, emailValidation: true });
     } else if (!validemail) {
       setFormState({ ...formState, emailValidation: true });
-    } else if (userExists[0].email !== sender.email) {
+    } else if (users[0].email !== sender.email) {
       setFormState({ ...formState, emailValidation: true });
       setFormState({ ...formState, emailExist: false });
     } else {
@@ -72,15 +72,15 @@ export default function Input() {
 
   const changeState = () => {
     if (
-      userExists[0].email === sender.email &&
-      userExists[0].password === sender.password
+      users[0].email === sender.email &&
+      users[0].password === sender.password
     ) {
       logIn();
     }
   };
 
   useEffect(() => {
-    if (sender.email === "" || userExists[0].email !== sender.email) {
+    if (sender.email === "" || users[0].email !== sender.email) {
       setFormState({ ...formState, isValid: false });
     }
   }, [isModalOpen, sender.email, sender.password]);
@@ -110,8 +110,7 @@ export default function Input() {
                   </span>
                 </div>
               ) : null}
-              {sender.email.length > 11 &&
-              userExists[0].email !== sender.email ? (
+              {sender.email.length > 11 && users[0].email !== sender.email ? (
                 <div>
                   <span style={{ color: `red` }}>
                     There is no account with this email address.
@@ -155,7 +154,7 @@ export default function Input() {
                   </div>
                 ) : null}
                 {sender.password.length > 9 &&
-                userExists[0].password !== sender.password ? (
+                users[0].password !== sender.password ? (
                   <div className="pt-2">
                     <span style={{ color: `red` }}>
                       The password you have provided is invalid!
@@ -168,7 +167,7 @@ export default function Input() {
 
           {formState.isValid &&
           sender.password.length > 10 &&
-          userExists[0].password === sender.password ? (
+          users[0].password === sender.password ? (
             <>
               <Link href="/">
                 <button
