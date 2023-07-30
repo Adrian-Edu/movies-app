@@ -61,7 +61,7 @@ export default function Home(props) {
   return (
     <section>
       {isLogOut ? (
-        <>
+        <main className="h-screen">
           <SecondNavbar login={logIn} />
           <div className="mt-14"></div>
           <Image
@@ -73,10 +73,12 @@ export default function Home(props) {
             height={1500}
             alt="Latest movies"
           />
-          <Footer />
-        </>
+          <footer className="mt-32 m:mt-28 md:mt-0">
+            <Footer />
+          </footer>
+        </main>
       ) : (
-        <>
+        <main className="h-min">
           <Navbar receive={receiveData} logout={logOut} />
           <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 h-auto">
             {Array.isArray(movieData) &&
@@ -90,8 +92,10 @@ export default function Home(props) {
                 />
               ))}
           </div>
-          <Footer />
-        </>
+          <footer className="mt-8 m:mt-14">
+            <Footer />
+          </footer>
+        </main>
       )}
     </section>
   );
