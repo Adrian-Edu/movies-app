@@ -26,7 +26,12 @@ export default function Input() {
   const users = useStore((state) => state.users);
   const usersMap = users.map((item) => {
     const users = item;
-    const mapedUsersValues = Object.values(users);
+    const mapedUsersValues = Object.entries(users);
+    for (const [key, value] of mapedUsersValues) {
+      const date = `${key} : ${value}`;
+      console.log(date);
+    }
+
     return mapedUsersValues;
   });
 
@@ -93,14 +98,14 @@ export default function Input() {
 
   return (
     <>
-      <section className="h-screen flex justify-center items-center text-center -mt-8 ">
+      <section className="h-full flex justify-center items-center text-center -mt-8 ">
         <div className="bg-yellow-100  w-4/5 md:w-6/12 xl:w-3/12 rounded-md">
           <h1 className="text-2xl  mt-5 mb-3 font-bold">Authentification</h1>
           <h2 className="text-xl  mt-5 mb-3 ">
             The movie list can be viewed by logging in.
           </h2>
           <p className="text-xl mt-5 mb-2 ">Email</p>
-          {usersMap}
+
           <form>
             <div>
               <input
