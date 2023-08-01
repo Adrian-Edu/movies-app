@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "../../../../components/button/page";
 import Card from "../../../../components/card/page";
-import { useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { useStore } from "../../../../api/store";
 
 export default function CreateUser(props) {
   const [userData, setUserData] = useState({
@@ -24,9 +24,21 @@ export default function CreateUser(props) {
   });
 
   const [visible, setVisible] = useState(false);
+  const isModalOpen = useStore((state) => state.isModalOpen);
 
   const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email);
   const [buttonColor, setButtonColor] = useState("changeButtonColor");
+  const nameInput = useRef();
+  const surNameInput = useRef();
+  const emailInput = useRef();
+  const passwordInput = useRef();
+
+  const resetInput = () => {
+    nameInput.current.value = "";
+    surNameInput.current.value = "";
+    emailInput.current.value = "";
+    passwordInput.current.value = "";
+  };
 
   const handleNameChange = (e) => {
     setUserData({ ...userData, name: e.target.value });
@@ -104,6 +116,10 @@ export default function CreateUser(props) {
     }
   }, [userData]);
 
+  useEffect(() => {
+    isModalOpen ? console.log("Modal deschis") : console.log("Modal Inchis");
+  });
+
   const handleVisibilityChange = (e) => {
     setVisible((prevState) => !prevState);
 
@@ -122,6 +138,7 @@ export default function CreateUser(props) {
               onChange={handleNameChange}
               placeholder="Name"
               type="text"
+              ref={nameInput}
             />
             {errorMessage.name === true && userData.name.length < 3 ? (
               <span>The name should have at least 3 characters!</span>
@@ -135,6 +152,7 @@ export default function CreateUser(props) {
               onChange={handleSurnameChange}
               placeholder="Surname"
               type="text"
+              ref={surNameInput}
             />
             {errorMessage.surName === true && userData.surName.length < 3 ? (
               <span>The surname should have at least 3 characters!</span>
@@ -147,6 +165,7 @@ export default function CreateUser(props) {
               value={userData.email}
               onChange={handleEmailChange}
               placeholder="Email"
+              ref={emailInput}
             />
             {errorMessage.email === true && userData.email.length < 12 ? (
               <span>The email should have at least 12 characters!</span>
@@ -168,6 +187,7 @@ export default function CreateUser(props) {
                 name="user_passowrd"
                 placeholder="Please insert your password"
                 type={visible ? "text" : "password"}
+                ref={passwordInput}
               ></input>
               <div className="pt-2.5 w-1/5">
                 <button onClick={handleVisibilityChange}>

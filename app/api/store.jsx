@@ -17,8 +17,23 @@ export const useStore = create((set) => ({
   isLogOut: true,
   isModalOpen: false,
 
-  logIn: () => set((state) => ({ isLogOut: !state.isLogOut })),
-  logOut: () => set((state) => ({ isLogOut: !state.isLogOut })),
-  openModal: () => set((state) => ({ isModalOpen: !state.isModalOpen })),
-  closeModal: () => set((state) => ({ isModalOpen: !state.isModalOpen })),
+  logIn: () => set({ isLogOut: false }),
+  logOut: () => set({ isLogOut: true }),
+  openModal: () => set({ isModalOpen: true }),
+  closeModal: () => set({ isModalOpen: false }),
 }));
+
+/*
+
+const usersMap = users.map((item) => {
+    const users = item;
+    const mapedUsersValues = Object.entries(users);
+    for (const [key, value] of mapedUsersValues) {
+      const date = `${key} : ${value}`;
+      console.log({date});
+    }
+
+    return mapedUsersValues;
+  });
+
+  */

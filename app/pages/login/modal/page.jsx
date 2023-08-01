@@ -1,21 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import {  useStore } from "../../../api/store";
 
 const Modal = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const closeModal = (e) => {
-    setIsOpen(false);
-    if (props.onClose) {
-      props.onClose();
-    }
-  };
-
-  useEffect(() => {
-    setIsOpen(props.isOpen);
-  }, [props.isOpen]);
+  const isModalOpen = useStore((state) => state.isModalOpen);
+  const closeModal = useStore((state) => state.closeModal);
 
   useEffect(() => {
     const escKey = (event) => {
@@ -40,7 +32,7 @@ const Modal = (props) => {
   });
 
   return (
-    <div className={`${isOpen ? "modal-wrapper" : "modal-hidden"}`}>
+    <div className={`${isModalOpen ? "modal-wrapper" : "modal-hidden"}`}>
       <div className="z-1001"></div>
       {props.children}
       <AiOutlineClose
