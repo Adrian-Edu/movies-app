@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
 import AddForm from "./modal/create-account/page";
 import Modal from "./modal/page";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 import { useStore } from "../../api/store";
@@ -27,12 +26,6 @@ export default function Input() {
   const users = useStore((state) => state.users);
   const isModalOpen = useStore((state) => state.isModalOpen);
   const openModal = useStore((state) => state.openModal);
-
-  const clearEmail = React.useRef();
-  const clearPassword = React.useRef();
-
-  const resetEmail = () => (clearEmail.current.value = "");
-  const resetPassword = () => (clearPassword.current.value = "");
 
   const handleEmailInput = (e) => {
     setSender({ ...sender, email: e.target.value.toLowerCase() });
@@ -86,17 +79,12 @@ export default function Input() {
   };
 
   useEffect(() => {
-    if (
-      sender.email === "" ||
-      users[0].email !== sender.email ||
-      clearEmail.current.value === ""
-    ) {
+    if (sender.email === "" || users[0].email !== sender.email) {
       setFormState({ ...formState, isValid: false });
     }
 
     if (isModalOpen === true) {
-      resetEmail();
-      resetPassword();
+      setFormState({ ...formState, isValid: false });
     }
   }, [isModalOpen, sender.email, sender.password]);
 
@@ -117,7 +105,6 @@ export default function Input() {
                 className="py-2 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 mb-3 rounded-xl box-border truncate"
                 type="email"
                 name="user_email"
-                ref={clearEmail}
                 placeholder="Please insert your email ..."
               ></input>
               {formState.emailValidation && sender.email.length < 12 ? (
@@ -156,7 +143,6 @@ export default function Input() {
                     name="user_passowrd"
                     placeholder="Please insert your password"
                     type={visible ? "text" : "password"}
-                    ref={clearPassword}
                   ></input>
                   <div className="pt-3 py-2 w-1/5">
                     <button onClick={handleVisibilityChange}>

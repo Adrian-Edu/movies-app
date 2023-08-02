@@ -33,7 +33,7 @@ export default async function MovieDetail({ params }) {
             alt={res.title}
             priority
           />
-          <p>{res.overview}</p>
+          <p className="mb-5">{res.overview}</p>
         </div>
       </div>
     </>

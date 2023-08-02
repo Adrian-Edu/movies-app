@@ -85,6 +85,7 @@ export default function Home(props) {
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (
                 <Movie
+                  login={logIn}
                   key={movie.id}
                   id={movie.id}
                   title={movie.title}
