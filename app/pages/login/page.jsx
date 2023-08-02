@@ -3,7 +3,7 @@
 import React from "react";
 import AddForm from "./modal/create-account/page";
 import Modal from "./modal/page";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import Link from "next/link";
 import { useStore } from "../../api/store";
