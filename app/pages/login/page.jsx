@@ -198,7 +198,7 @@ export default function Input() {
             Create account
           </button>
           <p className="text-xl  mt-2 mb-5 m:px-5 l:px-8 md:px-0  ">
-            Login data is only stored for logging in !
+            Data are stored only for logging in !
           </p>
         </div>
         <Modal>
