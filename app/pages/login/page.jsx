@@ -95,7 +95,7 @@ export default function Input() {
           <h2 className="text-xl  mt-5 mb-3 ">
             See the movie list by logging in.
           </h2>
-          <p className="text-xl mt-5 mb-2 ">Email</p>
+          <p className="text-xl mt-3 mb-3 ">Email</p>
           <form>
             <div>
               <input
@@ -190,14 +190,14 @@ export default function Input() {
             </button>
           )}
 
-          <p className="text-xl  mt-3 mb-3 ">You don't have an account?</p>
+          <p className="text-xl  mt-1 mb-3 ">You don't have an account?</p>
           <button
             onClick={openModal}
             className=" mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
           >
             Create account
           </button>
-          <p className="text-xl  mt-2 mb-5 m:px-5 l:px-8 md:px-0  ">
+          <p className="text-xl  mt-1 mb-5 m:px-5 l:px-8 md:px-0  ">
             Data are stored only for logging in !
           </p>
         </div>
