@@ -21,9 +21,7 @@ export default function Input() {
   const [userPassword, setUserPassword] = useState("");
 
   const emailInput = useRef();
-  const passwordInput = useRef();
   const resetInputEmail = () => (emailInput.current.value = "");
-  const resetInputPassword = () => (passwordInput.current.value = "");
 
   const logIn = useStore((state) => state.logIn);
   const users = useStore((state) => state.users);
@@ -85,7 +83,7 @@ export default function Input() {
 
     if (isModalOpen === true) {
       resetInputEmail();
-      resetInputPassword();
+      setFormState({ ...formState, isValid: false });
     }
   }, [isModalOpen, userEmail, userPassword]);
 
@@ -103,7 +101,7 @@ export default function Input() {
             <div>
               <input
                 onChange={handleEmailInput}
-                className="py-2 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 mb-3 rounded-xl box-border truncate"
+                className="py-2 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 mb-3 rounded-xl box-border truncate font-normal"
                 type="email"
                 name="user_email"
                 ref={emailInput}
@@ -140,12 +138,11 @@ export default function Input() {
                 <div className="flex justify-center   border-2  border-stone-700 font-bold w-90  bg-white w-4/5 outline-0 rounded-xl box-border truncate">
                   <input
                     onChange={handlePasswordInput}
-                    className="truncate py-2 pl-3 w-4/5 outline-0  bg-white"
+                    className="truncate py-2 pl-3 w-4/5 outline-0  bg-white font-normal"
                     id="passowrd"
                     name="user_passowrd"
-                    placeholder="Please insert your password"
+                    placeholder="Please insert your password ..."
                     type={visible ? "text" : "password"}
-                    ref={passwordInput}
                   ></input>
                   <div className="pt-3 py-2 w-1/5">
                     <button onClick={handleVisibilityChange}>
