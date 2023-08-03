@@ -93,7 +93,7 @@ export default function Input() {
         <div className="bg-yellow-100  w-4/5 md:w-5/12 xl:w-3/12 rounded-md">
           <h1 className="text-2xl  mt-5 mb-3 font-bold">Authentification</h1>
           <h2 className="text-xl  mt-5 mb-3 ">
-            The movie list can be viewed by logging in.
+            See the movie list by logging in.
           </h2>
           <p className="text-xl mt-5 mb-2 ">Email</p>
 
