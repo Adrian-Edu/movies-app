@@ -8,12 +8,10 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useStore } from "../../../../api/store";
 
 export default function CreateUser(props) {
-  const [userData, setUserData] = useState({
-    name: "",
-    surName: "",
-    email: "",
-    password: "",
-  });
+  const [userName, setUserName] = useState("");
+  const [userSurName, setUserSurName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState({
     name: false,
@@ -27,31 +25,31 @@ export default function CreateUser(props) {
   const [visible, setVisible] = useState(false);
   const isModalOpen = useStore((state) => state.isModalOpen);
 
-  const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email);
+  const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail);
   const [buttonColor, setButtonColor] = useState("changeButtonColor");
 
   const handleNameChange = (e) => {
-    setUserData({ ...userData, name: e.target.value });
+    setUserName(e.target.value);
   };
 
   const handleSurnameChange = (e) => {
-    setUserData({ ...userData, surName: e.target.value });
+    setUserSurName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
-    setUserData({ ...userData, email: e.target.value.toLowerCase() });
+    setUserEmail(e.target.value.toLowerCase());
   };
 
   const handlePasswordChange = (e) => {
-    setUserData({ ...userData, password: e.target.value });
+    setUserPassword(e.target.value);
   };
 
   const createAccount = (e) => {
     if (
-      userData.name === "" ||
-      userData.surName === "" ||
-      userData.email === "" ||
-      userData.password === ""
+      userName === "" ||
+      userSurName === "" ||
+      userEmail === "" ||
+      userPassword === ""
     ) {
       setErrorMessage({
         ...errorMessage,
@@ -66,22 +64,22 @@ export default function CreateUser(props) {
   };
 
   useEffect(() => {
-    if (userData.name.length > 2) {
+    if (userName.length > 2) {
       setErrorMessage({
         ...errorMessage,
         name: false,
       });
-    } else if (userData.surName.length > 2) {
+    } else if (userSurName.length > 2) {
       setErrorMessage({
         ...errorMessage,
         surName: false,
       });
-    } else if (userData.email.length > 11) {
+    } else if (userEmail.length > 11) {
       setErrorMessage({
         ...errorMessage,
         email: false,
       });
-    } else if (userData.password.length > 9) {
+    } else if (userPassword.length > 9) {
       setErrorMessage({
         ...errorMessage,
         password: false,
@@ -89,10 +87,10 @@ export default function CreateUser(props) {
     }
 
     if (
-      userData.name.length > 2 &&
-      userData.surName.length > 2 &&
-      userData.email.length > 11 &&
-      userData.password.length >= 9
+      userName.length > 2 &&
+      userSurName.length > 2 &&
+      userEmail.length > 11 &&
+      userPassword.length >= 9
     ) {
       setErrorMessage({ ...errorMessage, isValid: true });
     } else {
@@ -104,11 +102,16 @@ export default function CreateUser(props) {
     } else {
       setButtonColor("primary-button");
     }
-  }, [userData]);
+  }, [userName, userSurName, userPassword, userPassword]);
 
   useEffect(() => {
-    isModalOpen ? console.log("Modal deschis") : console.log("Modal Inchis");
-  });
+    if (!isModalOpen) {
+      setUserName("");
+      setUserEmail("");
+      setUserSurName("");
+      setUserPassword("");
+    }
+  }, [isModalOpen]);
 
   const handleVisibilityChange = (e) => {
     setVisible((prevState) => !prevState);
@@ -124,12 +127,12 @@ export default function CreateUser(props) {
           <div className="flex justify-center items-center flex-col pt-2">
             <input
               className="py-1 pl-3  w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold  rounded-xl box-border truncate"
-              value={userData.name}
+              value={userName}
               onChange={handleNameChange}
               placeholder="Name"
               type="text"
             />
-            {errorMessage.name === true && userData.name.length < 3 ? (
+            {errorMessage.name === true && userName.length < 3 ? (
               <span>The name should have at least 3 characters!</span>
             ) : null}
           </div>
@@ -137,12 +140,12 @@ export default function CreateUser(props) {
           <div className="flex justify-center items-center flex-col pt-1">
             <input
               className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold rounded-xl box-border truncate"
-              value={userData.surName}
+              value={userSurName}
               onChange={handleSurnameChange}
               placeholder="Surname"
               type="text"
             />
-            {errorMessage.surName === true && userData.surName.length < 3 ? (
+            {errorMessage.surName === true && userSurName.length < 3 ? (
               <span>The surname should have at least 3 characters!</span>
             ) : null}
           </div>
@@ -150,15 +153,15 @@ export default function CreateUser(props) {
           <div className="flex justify-center items-center flex-col pt-1">
             <input
               className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold   rounded-xl box-border truncate "
-              value={userData.email}
+              value={userEmail}
               onChange={handleEmailChange}
               placeholder="Email"
             />
-            {errorMessage.email === true && userData.email.length < 12 ? (
+            {errorMessage.email === true && userEmail.length < 12 ? (
               <span>The email should have at least 12 characters!</span>
             ) : null}
             {errorMessage.email === true &&
-            userData.email.length > 11 &&
+            userEmail.length > 11 &&
             !validemail ? (
               <span>The email should contain @ and .</span>
             ) : null}
@@ -167,7 +170,7 @@ export default function CreateUser(props) {
           <div className="pt-1 flex justify-center items-center flex-col ">
             <div className="flex justify-center   border-2  border-stone-700 font-bold  bg-white w-4/5 outline-0 rounded-xl box-border truncate">
               <input
-                value={userData.password}
+                value={userPassword}
                 onChange={handlePasswordChange}
                 className="truncate py-2 pl-3 w-4/5 outline-0  bg-white text-m"
                 id="passowrd"
@@ -181,7 +184,7 @@ export default function CreateUser(props) {
                 </button>
               </div>
             </div>
-            {errorMessage.password === true && userData.password.length < 10 ? (
+            {errorMessage.password === true && userPassword.length < 10 ? (
               <div className="pt-2">
                 <span>The password must have at least 10 characters!</span>
               </div>
