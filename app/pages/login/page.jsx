@@ -95,7 +95,7 @@ export default function Input() {
           <h2 className="text-xl  mt-5 mb-3 ">
             See the movie list by logging in.
           </h2>
-
+          <p className="text-xl mt-5 mb-2 ">Email</p>
           <form>
             <div>
               <input
