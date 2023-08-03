@@ -17,10 +17,13 @@ export default function Input() {
     emailExist: true,
   });
 
-  const [sender, setSender] = useState({
-    email: "",
-    password: "",
-  });
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+
+  const emailInput = useRef();
+  const passwordInput = useRef();
+  const resetInputEmail = () => (emailInput.current.value = "");
+  const resetInputPassword = () => (passwordInput.current.value = "");
 
   const logIn = useStore((state) => state.logIn);
   const users = useStore((state) => state.users);
@@ -28,11 +31,11 @@ export default function Input() {
   const openModal = useStore((state) => state.openModal);
 
   const handleEmailInput = (e) => {
-    setSender({ ...sender, email: e.target.value.toLowerCase() });
+    setUserEmail(e.target.value.toLowerCase());
   };
 
   const handlePasswordInput = (e) => {
-    setSender({ ...sender, password: e.target.value });
+    setUserPassword(e.target.value);
   };
 
   const handleVisibilityChange = (e) => {
@@ -41,16 +44,16 @@ export default function Input() {
     e.preventDefault();
   };
 
-  const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sender.email);
+  const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail);
 
   const onForward = (e) => {
-    if (sender.email === "") {
+    if (userEmail === "") {
       setFormState({ ...formState, emailValidation: true });
-    } else if (sender.email.length < 12) {
+    } else if (userEmail.length < 12) {
       setFormState({ ...formState, emailValidation: true });
     } else if (!validemail) {
       setFormState({ ...formState, emailValidation: true });
-    } else if (users[0].email !== sender.email) {
+    } else if (users[0].email !== userEmail) {
       setFormState({ ...formState, emailValidation: true });
       setFormState({ ...formState, emailExist: false });
     } else {
@@ -58,9 +61,9 @@ export default function Input() {
       setFormState({ ...formState, isValid: true });
     }
 
-    if (formState.isValid && sender.password === "") {
+    if (formState.isValid && userPassword === "") {
       setPasswordValidation(true);
-    } else if (formState.isValid && sender.password < 10) {
+    } else if (formState.isValid && userPassword < 10) {
       setPasswordValidation(true);
     } else {
       setPasswordValidation(false);
@@ -70,23 +73,21 @@ export default function Input() {
   };
 
   const changeState = () => {
-    if (
-      users[0].email === sender.email &&
-      users[0].password === sender.password
-    ) {
+    if (users[0].email === userEmail && users[0].password === userPassword) {
       logIn();
     }
   };
 
   useEffect(() => {
-    if (sender.email === "" || users[0].email !== sender.email) {
+    if (userEmail === "" || users[0].email !== userEmail) {
       setFormState({ ...formState, isValid: false });
     }
 
     if (isModalOpen === true) {
-      setFormState({ ...formState, isValid: false });
+      resetInputEmail();
+      resetInputPassword();
     }
-  }, [isModalOpen, sender.email, sender.password]);
+  }, [isModalOpen, userEmail, userPassword]);
 
   return (
     <>
@@ -105,16 +106,17 @@ export default function Input() {
                 className="py-2 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 mb-3 rounded-xl box-border truncate"
                 type="email"
                 name="user_email"
+                ref={emailInput}
                 placeholder="Please insert your email ..."
               ></input>
-              {formState.emailValidation && sender.email.length < 12 ? (
+              {formState.emailValidation && userEmail.length < 12 ? (
                 <div>
                   <span style={{ color: `red` }}>
                     Email must have at least 12 characters!
                   </span>
                 </div>
               ) : null}
-              {sender.email.length > 11 && users[0].email !== sender.email ? (
+              {userEmail.length > 11 && users[0].email !== userEmail ? (
                 <div>
                   <span style={{ color: `red` }}>
                     There is no account with this email address.
@@ -124,7 +126,7 @@ export default function Input() {
             </div>
 
             {formState.emailValidation &&
-            sender.email.length > 11 &&
+            userEmail.length > 11 &&
             !validemail ? (
               <div>
                 <span style={{ color: `red` }}>
@@ -143,6 +145,7 @@ export default function Input() {
                     name="user_passowrd"
                     placeholder="Please insert your password"
                     type={visible ? "text" : "password"}
+                    ref={passwordInput}
                   ></input>
                   <div className="pt-3 py-2 w-1/5">
                     <button onClick={handleVisibilityChange}>
@@ -157,8 +160,8 @@ export default function Input() {
                     </span>
                   </div>
                 ) : null}
-                {sender.password.length > 9 &&
-                users[0].password !== sender.password ? (
+                {userPassword.length > 9 &&
+                users[0].password !== userPassword ? (
                   <div className="pt-2">
                     <span style={{ color: `red` }}>
                       The password you have provided is invalid!
@@ -170,8 +173,8 @@ export default function Input() {
           </form>
 
           {formState.isValid &&
-          sender.password.length > 10 &&
-          users[0].password === sender.password ? (
+          userPassword.length > 10 &&
+          users[0].password === userPassword ? (
             <>
               <Link href="/">
                 <button
