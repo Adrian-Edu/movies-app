@@ -102,16 +102,14 @@ export default function CreateUser(props) {
     } else {
       setButtonColor("primary-button");
     }
-  }, [userName, userSurName, userPassword, userPassword]);
 
-  useEffect(() => {
     if (!isModalOpen) {
       setUserName("");
       setUserEmail("");
       setUserSurName("");
       setUserPassword("");
     }
-  }, [isModalOpen]);
+  }, [userName, userSurName, userPassword, userPassword, isModalOpen]);
 
   const handleVisibilityChange = (e) => {
     setVisible((prevState) => !prevState);

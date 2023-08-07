@@ -5,7 +5,7 @@ export const useStore = create((set) => ({
     {
       id: 1,
       email: "demo@demo.com",
-      password: "demo@demo.com",
+      password: "parola@7",
     },
     {
       id: 2,
@@ -22,18 +22,3 @@ export const useStore = create((set) => ({
   openModal: () => set({ isModalOpen: true }),
   closeModal: () => set({ isModalOpen: false }),
 }));
-
-/*
-
-const usersMap = users.map((item) => {
-    const users = item;
-    const mapedUsersValues = Object.entries(users);
-    for (const [key, value] of mapedUsersValues) {
-      const date = `${key} : ${value}`;
-      console.log({date});
-    }
-
-    return mapedUsersValues;
-  });
-
-  */
