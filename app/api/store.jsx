@@ -5,12 +5,12 @@ export const useStore = create((set) => ({
     {
       id: 1,
       email: "demo@demo.com",
-      password: "parola@7",
+      password: "parolauser1",
     },
     {
       id: 2,
       email: "sweet_florentin@yahoo.com",
-      password: "AdrianEdu@7",
+      password: "AdrianEdu@77",
     },
   ],
 
