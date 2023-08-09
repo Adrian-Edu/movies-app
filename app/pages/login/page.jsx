@@ -8,13 +8,14 @@ import Link from "next/link";
 import { useStore } from "../../api/store";
 
 export default function Input() {
-  const [passowrdValidation, setPasswordValidation] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const [formState, setFormState] = useState({
     isValid: false,
     emailValidation: false,
     emailExist: true,
+    validPassowrd: false,
   });
 
   const [userEmail, setUserEmail] = useState("");
@@ -63,6 +64,16 @@ export default function Input() {
       setPasswordValidation(true);
     } else {
       setPasswordValidation(false);
+    }
+
+    if (
+      formState.isValid &&
+      passwordValidation === false &&
+      users.some(
+        (item) => item.password === userPassword && item.email === userEmail
+      )
+    ) {
+      setFormState({ ...formState, passwordValidation: true });
     }
 
     e.preventDefault();
@@ -151,7 +162,7 @@ export default function Input() {
                     </button>
                   </div>
                 </div>
-                {passowrdValidation ? (
+                {passwordValidation ? (
                   <div className="pt-2">
                     <span style={{ color: `red` }}>
                       The password must have at least 10 characters!
@@ -174,7 +185,7 @@ export default function Input() {
           </form>
           {formState.isValid &&
           userPassword.length > 10 &&
-          users.some((item) => item.password === userPassword) ? (
+          formState.passwordValidation ? (
             <>
               <Link href="/">
                 <button
