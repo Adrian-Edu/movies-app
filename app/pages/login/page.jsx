@@ -171,7 +171,11 @@ export default function Input() {
               </div>
             ) : null}
           </form>
-          {formState.isValid && userPassword.length > 10 ? (
+          {formState.isValid &&
+          userPassword.length > 10 &&
+          users.some(
+            (item) => item.password === userPassword && item.email === userEmail
+          ) ? (
             <>
               <Link href="/">
                 <button
