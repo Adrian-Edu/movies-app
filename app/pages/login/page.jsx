@@ -15,7 +15,7 @@ export default function Input() {
     isValid: false,
     emailValidation: false,
     emailExist: true,
-    validPassowrd: false,
+    validPassword: false,
   });
 
   const [userEmail, setUserEmail] = useState("");
@@ -50,7 +50,7 @@ export default function Input() {
       setFormState({ ...formState, emailValidation: true });
     } else if (!validemail) {
       setFormState({ ...formState, emailValidation: true });
-    } else if (users.includes((item) => item.email !== userEmail)) {
+    } else if (!users.some((item) => item.email === userEmail)) {
       setFormState({ ...formState, emailValidation: true });
       setFormState({ ...formState, emailExist: false });
     } else {
@@ -66,27 +66,15 @@ export default function Input() {
       setPasswordValidation(false);
     }
 
-    if (
-      formState.isValid &&
-      passwordValidation === false &&
-      users.some(
-        (item) => item.password === userPassword && item.email === userEmail
-      )
-    ) {
-      setFormState({ ...formState, passwordValidation: true });
-    }
-
     e.preventDefault();
   };
 
   const changeState = () => {
-    if (
-      users.some(
-        (item) => item.email === userEmail && item.password === userPassword
-      )
-    ) {
-      logIn();
-    }
+    users.some((item) =>
+      item.email === userEmail && item.password === userPassword
+        ? logIn()
+        : null
+    );
   };
 
   useEffect(() => {
@@ -183,9 +171,7 @@ export default function Input() {
               </div>
             ) : null}
           </form>
-          {formState.isValid &&
-          userPassword.length > 10 &&
-          formState.passwordValidation ? (
+          {formState.isValid && userPassword.length > 10 ? (
             <>
               <Link href="/">
                 <button
