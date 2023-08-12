@@ -150,6 +150,7 @@ export default function Input() {
                     </button>
                   </div>
                 </div>
+
                 {passwordValidation ? (
                   <div className="pt-2">
                     <span style={{ color: `red` }}>
@@ -171,29 +172,38 @@ export default function Input() {
               </div>
             ) : null}
           </form>
-          {formState.isValid &&
-          userPassword.length > 10 &&
-          users.some(
-            (item) => item.password === userPassword && item.email === userEmail
-          ) ? (
-            <>
-              <Link href="/">
-                <button
-                  onClick={changeState}
-                  className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
-                >
-                  Log in
-                </button>
-              </Link>
-            </>
-          ) : (
-            <button
-              onClick={onForward}
-              className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
-            >
-              Next
-            </button>
-          )}
+          <div>
+            {formState.isValid &&
+            userPassword.length > 10 &&
+            users.some(
+              (item) =>
+                item.password === userPassword && item.email === userEmail
+            ) ? (
+              <>
+                <Link href="/">
+                  <button
+                    onClick={changeState}
+                    className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
+                  >
+                    Log in
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <button
+                onClick={onForward}
+                className=" mt-3 mb-3 bg-cyan-400 py-2 w-4/5 rounded-lg border-2 border-stone-700 font-bold"
+              >
+                Next
+              </button>
+            )}
+          </div>
+          {formState.isValid ? (
+            <Link href="" className="text-red-500 font-bold">
+              Forgot password ?
+            </Link>
+          ) : null}
+
           <p className="text-xl  mt-1 mb-3 ">You don't have an account?</p>
           <button
             onClick={openModal}

@@ -4,13 +4,17 @@ export const useStore = create((set) => ({
   users: [
     {
       id: 1,
+      name: "denis",
+      surname: "demo",
       email: "denis@demo.com",
       password: "deniseprogramator",
     },
     {
       id: 2,
+      name: "adrian",
+      surname: "edu",
       email: "adrian_edu@yahoo.com",
-      password: "adrianedu@7",
+      password: "Headhunter@7",
     },
   ],
 
