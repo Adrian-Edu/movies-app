@@ -24,9 +24,9 @@ export default function CreateUser(props) {
 
   const [visible, setVisible] = useState(false);
   const isModalOpen = useStore((state) => state.isModalOpen);
-
   const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail);
   const [buttonColor, setButtonColor] = useState("changeButtonColor");
+  const users = useStore((state) => state.users);
 
   const handleNameChange = (e) => {
     setUserName(e.target.value);
@@ -45,6 +45,7 @@ export default function CreateUser(props) {
   };
 
   const createAccount = (e) => {
+    e.preventDefault();
     if (
       userName === "" ||
       userSurName === "" ||
@@ -59,8 +60,32 @@ export default function CreateUser(props) {
         password: true,
         isValid: false,
       });
+    } else if (
+      userName.length > 2 &&
+      userSurName.length > 2 &&
+      userEmail.length > 11 &&
+      userPassword.length > 9
+    ) {
+      setErrorMessage({
+        ...errorMessage,
+        name: false,
+        surName: false,
+        email: false,
+        password: false,
+        isValid: true,
+      });
     }
-    e.preventDefault();
+
+    if (errorMessage.isValid === true) {
+      users.push({
+        id: "",
+        name: userName,
+        surname: userSurName,
+        email: userEmail,
+        password: userPassword,
+      });
+      console.log(users);
+    }
   };
 
   useEffect(() => {
@@ -90,11 +115,9 @@ export default function CreateUser(props) {
       userName.length > 2 &&
       userSurName.length > 2 &&
       userEmail.length > 11 &&
-      userPassword.length >= 9
+      userPassword.length > 9
     ) {
       setErrorMessage({ ...errorMessage, isValid: true });
-    } else {
-      setErrorMessage({ ...errorMessage, isValid: false });
     }
 
     if (errorMessage.isValid === false) {
@@ -121,7 +144,7 @@ export default function CreateUser(props) {
     <div>
       <Card>
         <h2 className="text-2xl font-bold">Create Account</h2>
-        <form onSubmit={() => {}}>
+        <form onSubmit={createAccount}>
           <div className="flex justify-center items-center flex-col pt-2">
             <input
               className="py-1 pl-3  w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold  rounded-xl box-border truncate"
@@ -189,11 +212,7 @@ export default function CreateUser(props) {
             ) : null}
           </div>
 
-          <Button
-            className={` ${buttonColor} `}
-            disabled={errorMessage.isValid}
-            onClick={createAccount}
-          >
+          <Button className={` ${buttonColor} `} type="submit">
             Create
           </Button>
         </form>
