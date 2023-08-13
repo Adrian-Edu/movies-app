@@ -12,7 +12,7 @@ export default function CreateUser(props) {
   const [userSurName, setUserSurName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [submited, setSubmited] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState({
     name: false,
@@ -21,6 +21,7 @@ export default function CreateUser(props) {
     password: false,
     isValid: false,
     createUser: false,
+    disabled: false,
   });
 
   const [visible, setVisible] = useState(false);
@@ -79,13 +80,22 @@ export default function CreateUser(props) {
         email: userEmail,
         password: userPassword,
       });
-
       setUserName("");
       setUserEmail("");
       setUserSurName("");
       setUserPassword("");
-      setSubmited(true);
-      setButtonColor("changeButtonColor");
+      setSubmitted(true);
+    }
+
+    if (submitted === true) {
+      setErrorMessage({
+        ...errorMessage,
+        name: false,
+        surName: false,
+        email: false,
+        password: false,
+        isValid: false,
+      });
     }
 
     e.preventDefault();
@@ -120,9 +130,28 @@ export default function CreateUser(props) {
       setUserSurName("");
       setUserPassword("");
       setErrorMessage({ ...errorMessage, isValid: false });
-      setSubmited(false);
+      setSubmitted(false);
+      setErrorMessage({
+        ...errorMessage,
+        name: false,
+        surName: false,
+        email: false,
+        password: false,
+        isValid: false,
+      });
     }
-  }, [userName, userSurName, userPassword, userPassword, isModalOpen]);
+
+    if (submitted === true) {
+      setButtonColor("changeButtonColor");
+    }
+  }, [
+    userName,
+    userSurName,
+    userPassword,
+    userPassword,
+    isModalOpen,
+    submitted,
+  ]);
 
   const handleVisibilityChange = (e) => {
     setVisible((prevState) => !prevState);
@@ -137,7 +166,7 @@ export default function CreateUser(props) {
         <form onSubmit={createAccount}>
           <div className="flex justify-center items-center flex-col pt-2">
             <input
-              className="py-1 pl-3  w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold  rounded-xl box-border truncate"
+              className="py-1 pl-3 w-4/5 outline-0 bg-white border-2  border-stone-700 font-bold rounded-xl box-border truncate"
               value={userName}
               onChange={handleNameChange}
               placeholder="Name"
@@ -203,25 +232,27 @@ export default function CreateUser(props) {
           </div>
 
           <Button className={` ${buttonColor} `} type="submit">
-            Create
+            Create user
           </Button>
 
-          {submited ? (
-            <div
-              className="contact-message"
-              style={{
-                backgroundColor: "red",
-                fontWeight: 700,
-                height: "4.5%",
-                display: "flex",
-                textAlign: "center",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              You have successfully created your account!
-            </div>
-          ) : null}
+          <div className="flex justify-center items-center">
+            {submitted ? (
+              <div
+                className="w-4/5 py-1 text-lg"
+                style={{
+                  backgroundColor: "red",
+                  fontWeight: 700,
+                  height: "4.5%",
+                  display: "flex",
+                  textAlign: "center",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                You have successfully created your account!
+              </div>
+            ) : null}
+          </div>
         </form>
       </Card>
     </div>

@@ -73,7 +73,7 @@ span {
 
 .card {
   width: 450px;
-  height: 480px;
+  min-height: 480px;
   padding: 40px 20px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.452);
@@ -189,10 +189,4 @@ span {
   .page-height-notfount {
     height: 90vh;
   }
-}
-
-.contact-message {
-  width: 30%;
-  height: 120px;
-  font-size: 17px;
 }
