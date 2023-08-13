@@ -12,6 +12,7 @@ export default function CreateUser(props) {
   const [userSurName, setUserSurName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [submited, setSubmited] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState({
     name: false,
@@ -45,13 +46,7 @@ export default function CreateUser(props) {
   };
 
   const createAccount = (e) => {
-    e.preventDefault();
-    if (
-      userName === "" ||
-      userSurName === "" ||
-      userEmail === "" ||
-      userPassword === ""
-    ) {
+    if (userName < 2 || userSurName < 2 || userEmail < 11 || userPassword < 9) {
       setErrorMessage({
         ...errorMessage,
         name: true,
@@ -84,40 +79,33 @@ export default function CreateUser(props) {
         email: userEmail,
         password: userPassword,
       });
-      console.log(users);
+
+      setUserName("");
+      setUserEmail("");
+      setUserSurName("");
+      setUserPassword("");
+      setSubmited(true);
+      setButtonColor("changeButtonColor");
     }
+
+    e.preventDefault();
   };
 
   useEffect(() => {
-    if (userName.length > 2) {
-      setErrorMessage({
-        ...errorMessage,
-        name: false,
-      });
-    } else if (userSurName.length > 2) {
-      setErrorMessage({
-        ...errorMessage,
-        surName: false,
-      });
-    } else if (userEmail.length > 11) {
-      setErrorMessage({
-        ...errorMessage,
-        email: false,
-      });
-    } else if (userPassword.length > 9) {
-      setErrorMessage({
-        ...errorMessage,
-        password: false,
-      });
-    }
-
     if (
       userName.length > 2 &&
       userSurName.length > 2 &&
       userEmail.length > 11 &&
-      userPassword.length > 9
+      userPassword.length >= 9
     ) {
-      setErrorMessage({ ...errorMessage, isValid: true });
+      setErrorMessage({
+        ...errorMessage,
+        name: false,
+        surName: false,
+        email: false,
+        password: false,
+        isValid: true,
+      });
     }
 
     if (errorMessage.isValid === false) {
@@ -131,6 +119,8 @@ export default function CreateUser(props) {
       setUserEmail("");
       setUserSurName("");
       setUserPassword("");
+      setErrorMessage({ ...errorMessage, isValid: false });
+      setSubmited(false);
     }
   }, [userName, userSurName, userPassword, userPassword, isModalOpen]);
 
@@ -178,7 +168,7 @@ export default function CreateUser(props) {
               onChange={handleEmailChange}
               placeholder="Email"
             />
-            {errorMessage.email === true && userEmail.length < 12 ? (
+            {errorMessage.email === true && userEmail.length < 11 ? (
               <span>The email should have at least 12 characters!</span>
             ) : null}
             {errorMessage.email === true &&
@@ -205,7 +195,7 @@ export default function CreateUser(props) {
                 </button>
               </div>
             </div>
-            {errorMessage.password === true && userPassword.length < 10 ? (
+            {errorMessage.password === true && userPassword.length <= 9 ? (
               <div className="pt-2">
                 <span>The password must have at least 10 characters!</span>
               </div>
@@ -215,6 +205,23 @@ export default function CreateUser(props) {
           <Button className={` ${buttonColor} `} type="submit">
             Create
           </Button>
+
+          {submited ? (
+            <div
+              className="contact-message"
+              style={{
+                backgroundColor: "red",
+                fontWeight: 700,
+                height: "4.5%",
+                display: "flex",
+                textAlign: "center",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              You have successfully created your account!
+            </div>
+          ) : null}
         </form>
       </Card>
     </div>
