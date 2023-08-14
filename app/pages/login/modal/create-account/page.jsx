@@ -21,7 +21,6 @@ export default function CreateUser(props) {
     password: false,
     isValid: false,
     createUser: false,
-    disabled: false,
   });
 
   const [visible, setVisible] = useState(false);
@@ -48,7 +47,27 @@ export default function CreateUser(props) {
   };
 
   const createAccount = (e) => {
-    if (userName < 2 || userSurName < 2 || userEmail < 11 || userPassword < 9) {
+    if (
+      userName.length < 2 ||
+      userSurName.length < 2 ||
+      userEmail.length < 9 ||
+      userPassword.length < 9
+    ) {
+      setErrorMessage({
+        ...errorMessage,
+        name: true,
+        surName: true,
+        email: true,
+        password: true,
+        isValid: false,
+      });
+      setSubmitted(false);
+    } else if (
+      userName.length < 2 &&
+      userSurName.length < 2 &&
+      userEmail.length < 9 &&
+      userPassword.length < 9
+    ) {
       setErrorMessage({
         ...errorMessage,
         name: true,
@@ -60,7 +79,7 @@ export default function CreateUser(props) {
     } else if (
       userName.length > 2 &&
       userSurName.length > 2 &&
-      userEmail.length > 11 &&
+      userEmail.length > 9 &&
       userPassword.length > 9
     ) {
       setErrorMessage({
@@ -71,6 +90,7 @@ export default function CreateUser(props) {
         password: false,
         isValid: true,
       });
+      setSubmitted(true);
     }
 
     if (errorMessage.isValid === true) {
@@ -106,7 +126,7 @@ export default function CreateUser(props) {
     if (
       userName.length > 2 &&
       userSurName.length > 2 &&
-      userEmail.length > 11 &&
+      userEmail.length > 9 &&
       userPassword.length >= 9
     ) {
       setErrorMessage({
@@ -116,6 +136,11 @@ export default function CreateUser(props) {
         email: false,
         password: false,
         isValid: true,
+      });
+    } else {
+      setErrorMessage({
+        ...errorMessage,
+        isValid: false,
       });
     }
 
@@ -197,14 +222,13 @@ export default function CreateUser(props) {
               value={userEmail}
               onChange={handleEmailChange}
               placeholder="Email"
-              type="email"
             />
-            {errorMessage.email === true && userEmail.length < 11 ? (
-              <span>The email should have at least 11 characters!</span>
+            {errorMessage.email === true && userEmail.length < 10 ? (
+              <span>The email should have at least 10 characters!</span>
             ) : null}
             {errorMessage.email === true &&
-            userEmail.length > 10 &&
-            !validemail ? (
+            validemail &&
+            userEmail.length > 9 ? (
               <span>The email should contain @ and .</span>
             ) : null}
           </div>
@@ -226,14 +250,18 @@ export default function CreateUser(props) {
                 </button>
               </div>
             </div>
-            {errorMessage.password === true && userPassword.length <= 9 ? (
+            {errorMessage.password === true && userPassword.length < 10 ? (
               <div className="pt-2">
                 <span>The password must have at least 10 characters!</span>
               </div>
             ) : null}
           </div>
 
-          <Button className={` ${buttonColor} `} type="submit">
+          <Button
+            className={` ${buttonColor} `}
+            type="submit"
+            disabled={submitted}
+          >
             Create user
           </Button>
 

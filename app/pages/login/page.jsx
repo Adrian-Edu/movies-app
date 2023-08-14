@@ -198,11 +198,6 @@ export default function Input() {
               </button>
             )}
           </div>
-          {formState.isValid ? (
-            <Link href="" className="text-red-500 font-bold">
-              Forgot password ?
-            </Link>
-          ) : null}
 
           <p className="text-xl  mt-1 mb-3 ">You don't have an account?</p>
           <button
