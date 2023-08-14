@@ -29,6 +29,7 @@ export default function CreateUser(props) {
   const validemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail);
   const [buttonColor, setButtonColor] = useState("changeButtonColor");
   const users = useStore((state) => state.users);
+  const closeModal = useStore((state) => state.closeModal);
 
   const handleNameChange = (e) => {
     setUserName(e.target.value);
@@ -196,12 +197,13 @@ export default function CreateUser(props) {
               value={userEmail}
               onChange={handleEmailChange}
               placeholder="Email"
+              type="email"
             />
             {errorMessage.email === true && userEmail.length < 11 ? (
-              <span>The email should have at least 12 characters!</span>
+              <span>The email should have at least 11 characters!</span>
             ) : null}
             {errorMessage.email === true &&
-            userEmail.length > 11 &&
+            userEmail.length > 10 &&
             !validemail ? (
               <span>The email should contain @ and .</span>
             ) : null}
@@ -235,24 +237,21 @@ export default function CreateUser(props) {
             Create user
           </Button>
 
-          <div className="flex justify-center items-center">
-            {submitted ? (
-              <div
-                className="w-4/5 py-1 text-lg"
-                style={{
-                  backgroundColor: "red",
-                  fontWeight: 700,
-                  height: "4.5%",
-                  display: "flex",
-                  textAlign: "center",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                You have successfully created your account!
+          {submitted ? (
+            <div className="flex justify-center ">
+              <div className="flex flex-col w-4/5">
+                <p className="py-1 text-lg bg-red-600 font-bold rounded-md">
+                  You have successfully created your account!
+                </p>
+                <button
+                  onClick={closeModal}
+                  className="py-1 text-lg bg-lime-500 font-bold mt-2 rounded-md"
+                >
+                  Go back to login
+                </button>
               </div>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </form>
       </Card>
     </div>
