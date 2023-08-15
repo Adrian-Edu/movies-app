@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, React } from "react";
 import Button from "../../../../components/button/page";
 import Card from "../../../../components/card/page";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
@@ -20,7 +19,6 @@ export default function CreateUser(props) {
     email: false,
     password: false,
     isValid: false,
-    createUser: false,
   });
 
   const [visible, setVisible] = useState(false);
@@ -48,39 +46,11 @@ export default function CreateUser(props) {
 
   const createAccount = (e) => {
     if (
-      userName.length < 2 ||
-      userSurName.length < 2 ||
-      userEmail.length < 9 ||
-      userPassword.length < 9
-    ) {
-      setErrorMessage({
-        ...errorMessage,
-        name: true,
-        surName: true,
-        email: true,
-        password: true,
-        isValid: false,
-      });
-      setSubmitted(false);
-    } else if (
-      userName.length < 2 &&
-      userSurName.length < 2 &&
-      userEmail.length < 9 &&
-      userPassword.length < 9
-    ) {
-      setErrorMessage({
-        ...errorMessage,
-        name: true,
-        surName: true,
-        email: true,
-        password: true,
-        isValid: false,
-      });
-    } else if (
       userName.length > 2 &&
       userSurName.length > 2 &&
       userEmail.length > 9 &&
-      userPassword.length > 9
+      userPassword.length > 9 &&
+      validemail
     ) {
       setErrorMessage({
         ...errorMessage,
@@ -91,6 +61,16 @@ export default function CreateUser(props) {
         isValid: true,
       });
       setSubmitted(true);
+    } else {
+      setErrorMessage({
+        ...errorMessage,
+        name: true,
+        surName: true,
+        email: true,
+        password: true,
+        isValid: false,
+      });
+      setSubmitted(false);
     }
 
     if (errorMessage.isValid === true) {
@@ -127,7 +107,8 @@ export default function CreateUser(props) {
       userName.length > 2 &&
       userSurName.length > 2 &&
       userEmail.length > 9 &&
-      userPassword.length >= 9
+      userPassword.length >= 9 &&
+      validemail
     ) {
       setErrorMessage({
         ...errorMessage,
@@ -170,14 +151,9 @@ export default function CreateUser(props) {
     if (submitted === true) {
       setButtonColor("changeButtonColor");
     }
-  }, [
-    userName,
-    userSurName,
-    userPassword,
-    userPassword,
-    isModalOpen,
-    submitted,
-  ]);
+
+    validemail ? console.log(true) : console.log(false);
+  }, [userName, userSurName, userPassword, isModalOpen, submitted, validemail]);
 
   const handleVisibilityChange = (e) => {
     setVisible((prevState) => !prevState);
@@ -227,8 +203,8 @@ export default function CreateUser(props) {
               <span>The email should have at least 10 characters!</span>
             ) : null}
             {errorMessage.email === true &&
-            validemail &&
-            userEmail.length > 9 ? (
+            userEmail.length > 8 &&
+            !validemail ? (
               <span>The email should contain @ and .</span>
             ) : null}
           </div>
