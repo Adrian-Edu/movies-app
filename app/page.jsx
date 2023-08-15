@@ -81,7 +81,7 @@ export default function Home(props) {
       ) : (
         <main className="h-min">
           <Navbar receive={receiveData} logout={logOut} />
-          <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 h-auto">
+          <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 min-h-screen">
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (
                 <Movie
