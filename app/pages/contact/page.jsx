@@ -4,9 +4,9 @@ export default function About() {
   return (
     <>
       <Link href="/">
-        <button className="btn bg-red-700 ml-2 mb-2 text-xl">Go home</button>
+        <button className="btn bg-red-700 ml-2 mb-2 text-sm md:text-xl ">Go home</button>
       </Link>
-      <h1 className="text-6xl flex justify-center font-bold mb-6">Contact</h1>
+      <h1 className="text-4xl md:text-6xl flex justify-center font-bold mb-6">Contact</h1>
       <div className="h-4/6 flex justify-center text-4xl ">
         <div className="max-w-screen-2xl mb-10 mx-10 text-2xl text-center md:mx-20 md:text-4xl md:text-justify ">
           <p>

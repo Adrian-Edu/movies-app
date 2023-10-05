@@ -6,7 +6,7 @@ import SecondNavbar from "./components/navbar-secondary/page.jsx";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "./components/footer/page.jsx";
-import { useStore } from "../app/api/store.jsx";
+import { useStore } from "./api/store.jsx";
 
 export default function Home(props) {
   const [movieData, setMovieData] = useState([]);

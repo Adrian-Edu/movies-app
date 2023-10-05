@@ -25,4 +25,5 @@ export const useStore = create((set) => ({
   logOut: () => set({ isLogOut: true }),
   openModal: () => set({ isModalOpen: true }),
   closeModal: () => set({ isModalOpen: false }),
+
 }));
