@@ -1,14 +1,14 @@
 "use client";
 
 import Movie from "./pages/movie/page.jsx";
-import Navbar from "./components/navbar/page.jsx";
-import SecondNavbar from "./components/navbar-secondary/page.jsx";
+import NavbarLogOut from "./components/navbar-auth/page.jsx";
+import NavbarLogIn from "./components/navbar-login/page.jsx";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "./components/footer/page.jsx";
 import { useStore } from "./api/store.jsx";
 
-export default function Home(props) {
+export default function Home() {
   const [movieData, setMovieData] = useState([]);
   const [dataFromChild, setDataFromChild] = useState("");
   const isLogOut = useStore((state) => state.isLogOut);
@@ -62,7 +62,7 @@ export default function Home(props) {
     <section>
       {isLogOut ? (
         <main className="h-screen relative">
-          <SecondNavbar login={logIn} />
+          <NavbarLogIn login={logIn} />
           <div className="mt-20 l:mt-6"></div>
           <Image
             style={{
@@ -80,7 +80,7 @@ export default function Home(props) {
         </main>
       ) : (
         <main className="h-min">
-          <Navbar receive={receiveData} logout={logOut} />
+          <NavbarLogOut receive={receiveData} logout={logOut} />
           <div className="grid grid-cols-fluid gap-8 justify-center items-center mx-5 min-h-screen">
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (

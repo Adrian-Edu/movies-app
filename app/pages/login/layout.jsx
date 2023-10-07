@@ -1,4 +1,4 @@
-import Navbar from "../../components/navbar-login/page";
+import Navbar from "../../components/navbar-goback/page";
 
 export default function Login({ children }) {
   return (
