@@ -93,30 +93,6 @@ export default function CreateUser(props) {
       setSubmitted(true);
     }
 
-    /*
-
-        if (errorMessage.isValid === true) {
-      ({...users, users: { id: "",
-        name: userName,
-        surname: userSurName,
-        email: userEmail,
-        password: userPassword,}})
-      users.push({
-        id: "",
-        name: userName,
-        surname: userSurName,
-        email: userEmail,
-        password: userPassword,
-      });
-      setUserName("");
-      setUserEmail("");
-      setUserSurName("");
-      setUserPassword("");
-      setSubmitted(true);
-    }
-
-    */
-
     if (submitted === true) {
       setErrorMessage({
         ...errorMessage,

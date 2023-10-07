@@ -93,7 +93,7 @@ export default function Input() {
       <section className="h-full flex justify-center items-center text-center -mt-8 ">
         <div className="bg-yellow-100  w-4/5 md:w-5/12 xl:w-3/12 rounded-md">
           <h1 className="text-2xl  mt-5 mb-3 font-bold">Authentification</h1>
-          <h2 className="text-xl  mt-5 mb-3 ">
+          <h2 className="text-xl mt-5 mb-3 mx-2 ">
             See the movie list by logging in.
           </h2>
           <p className="text-xl mt-3 mb-3 ">Email</p>
@@ -206,8 +206,8 @@ export default function Input() {
           >
             Create account
           </button>
-          <p className="text-xl  mt-1 mb-5 m:px-5 l:px-8 md:px-0  ">
-            Data are stored only for logging in !
+          <p className="text-xl mt-1 mb-5 mx-1 m:px-5 l:px-8 md:px-0  ">
+            Data are stored only for logging in!
           </p>
         </div>
         <Modal>

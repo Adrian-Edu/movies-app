@@ -62,7 +62,7 @@ export default function Home() {
     <section>
       {isLogOut ? (
         <main className="h-screen relative">
-          <NavbarLogIn login={logIn} />
+          <NavbarLogIn />
           <div className="mt-20 l:mt-6"></div>
           <Image
             style={{
@@ -71,7 +71,7 @@ export default function Home() {
             src="/lastest-movies.jpg"
             width={1500}
             height={1500}
-            priority={true}
+            loading="lazy"
             alt="Latest movies"
           />
           <footer className="position absolute bottom-0 left-0 right-0  md:static">
@@ -85,7 +85,6 @@ export default function Home() {
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (
                 <Movie
-                  login={logIn}
                   key={movie.id}
                   id={movie.id}
                   title={movie.title}

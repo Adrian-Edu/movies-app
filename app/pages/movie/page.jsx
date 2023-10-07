@@ -9,11 +9,11 @@ export default function Movie(props) {
       <h3 className="mb-2 md:text-xl">{props.release_date}</h3>
       <Link href={`/pages/movie/${props.id}`}>
         <Image
+          loading="lazy"
           src={imagePath + props.poster_path}
           width={360}
           height={300}
           alt={props.title}
-          priority
         />
       </Link>
     </section>
