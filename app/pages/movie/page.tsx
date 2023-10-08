@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Movie(props : {id : string, title: any, poster_path: any, release_date: number }) {
+export default function Movie(props : {id : string, title: string & number, poster_path: string & number, release_date: number }) {
 
  console.log(props.release_date);
 
