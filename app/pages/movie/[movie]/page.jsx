@@ -46,7 +46,6 @@ export default function MovieDetail({ params }) {
             width={500}
             height={500}
             alt={res.title}
-            
           />
           <p className="mb-5">{res.overview}</p>
         </div>

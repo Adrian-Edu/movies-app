@@ -1,6 +1,6 @@
 "use client";
 
-import Movie from "./pages/movie/page.jsx";
+import Movie from "./pages/movie/page.tsx";
 import NavbarLogOut from "./components/navbar-auth/page.jsx";
 import NavbarLogIn from "./components/navbar-login/page.jsx";
 import { useState, useEffect } from "react";
@@ -12,7 +12,6 @@ export default function Home() {
   const [movieData, setMovieData] = useState([]);
   const [dataFromChild, setDataFromChild] = useState("");
   const isLogOut = useStore((state) => state.isLogOut);
-  const logIn = useStore((state) => state.logIn);
   const logOut = useStore((state) => state.logOut);
 
   const receiveData = (data) => {
@@ -85,7 +84,6 @@ export default function Home() {
             {Array.isArray(movieData) &&
               filteredMovieData.map((movie) => (
                 <Movie
-                  key={movie.id}
                   id={movie.id}
                   title={movie.title}
                   poster_path={movie.poster_path}

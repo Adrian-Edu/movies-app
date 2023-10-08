@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useStore } from "../../../app/api/store.jsx";
+import { useStore } from "../../api/store.jsx";
 
 export default function Navbar(props) {
   const logOut = useStore((state) => state.logOut);
