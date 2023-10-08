@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Movie(props : {id : string, title: string | number, poster_path: string | number, release_date: number }) {
-
- console.log(props.release_date);
+export function Movie(props : {id : string, title: string | number, poster_path: string | number, release_date: number }) {
 
   const imagePath = "https://image.tmdb.org/t/p/original";
   return (
@@ -23,3 +21,4 @@ export default function Movie(props : {id : string, title: string | number, post
   );
 }
 
+export default Movie;
