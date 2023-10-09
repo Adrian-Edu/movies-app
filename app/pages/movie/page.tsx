@@ -1,11 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Movie(props : {id : string, title: string & number, poster_path: string & number, release_date: number }) {
-
- console.log(props.release_date);
+export default function Movie(props : {id : string, title: string | number, poster_path: string | number, release_date: number }) {
 
   const imagePath = "https://image.tmdb.org/t/p/original";
+  
   return (
     <section>
       <h2 className="font-bold truncate sm:text-2xl ">{props.title}</h2>
