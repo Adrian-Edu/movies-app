@@ -1,6 +1,6 @@
 "use client";
 
-import Movie from "./pages/movie/page.tsx";
+import Movie from "./pages/movie/page.jsx";
 import NavbarLogOut from "./components/navbar-auth/page.jsx";
 import NavbarLogIn from "./components/navbar-login/page.jsx";
 import { useState, useEffect } from "react";
