@@ -34,7 +34,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/page.jsx", "app/api/store.jsx", "app/pages/movie/page.jsx"  ],
+, "app/page.tsx", "app/api/store.jsx", "app/pages/movie/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

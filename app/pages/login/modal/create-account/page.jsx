@@ -6,6 +6,7 @@ import Card from "../../../../components/card/page";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useStore } from "../../../../api/store";
 
+
 export default function CreateUser(props) {
   const [userName, setUserName] = useState("");
   const [userSurName, setUserSurName] = useState("");
@@ -74,7 +75,7 @@ export default function CreateUser(props) {
     }
 
     if (errorMessage.isValid === true) {
-      ({...users, users: { id: "",
+      ({...users, users: { id: Math.random().toString(36).slice(2, 10),
         name: userName,
         surname: userSurName,
         email: userEmail,
@@ -157,8 +158,12 @@ export default function CreateUser(props) {
       setButtonColor("changeButtonColor");
     }
 
-    validemail ? console.log(true) : console.log(false);
-  }, [userName, userSurName, userPassword, isModalOpen, submitted, validemail]);
+    if (submitted === true && errorMessage.isValid === true) {
+      console.log('Salvare date local stroage');
+    
+    }
+
+  }, [userName, userSurName, userPassword, isModalOpen, submitted, validemail, errorMessage.isValid]);
 
   const handleVisibilityChange = (e) => {
     setVisible((prevState) => !prevState);
